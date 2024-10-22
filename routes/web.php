@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\PurchaseOrderController;
+use App\Http\Controllers\ProductController;
 
 // Rute untuk halaman utama
 Route::get('/', function () {
@@ -52,5 +53,15 @@ Route::get('/purchase-order', [PurchaseOrderController::class, 'index'])->name('
 Route::get('/adminlte', function () {
     return view('adminlte');
 })->name('adminlte'); // Disarankan untuk memberikan nama pada route
+
+
+// Route untuk menampilkan produk dari database
+Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+
+// Route untuk menampilkan produk langsung dari API
+Route::get('/product/api', [ProductController::class, 'indexFromApi'])->name('products.api');
+
+// Route untuk menyimpan produk dari API ke database
+Route::get('/products/store', [ProductController::class, 'storeProductsFromApi'])->name('products.store');
 
 ?>

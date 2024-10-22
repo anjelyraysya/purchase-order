@@ -102,7 +102,110 @@
     transition: transform 0.3s ease;
 }
 
-   
+
+
+/* Memperkecil ukuran tombol tetapi menambah lebar */
+.btn-sm {
+    padding: 10px 20px; /* Padding untuk ukuran tombol */
+    font-size: 12px;    /* Ukuran font tetap kecil */
+    border-radius: 5px; /* Sedikit membulatkan sudut tombol */
+    transition: all 0.3s ease; /* Efek transisi saat hover */
+}
+
+/* Atur ikon agar lebih kecil */
+.btn-sm i {
+    font-size: 14px; /* Ukuran ikon lebih sesuai */
+    margin-right: 5px; /* Jarak antara ikon dan teks */
+}
+
+/* Menambahkan jarak antar tombol secara vertikal (atas-bawah) */
+td .btn {
+    display: block; /* Agar tombol tampil vertikal */
+    width: 100px; /* Lebar tombol yang sama untuk kedua tombol */
+    margin: 5px 0; /* Jarak atas dan bawah antar tombol */
+}
+
+/* Style tambahan untuk warna tombol */
+.btn-warning {
+    background-color: #ffc107;
+    border-color: #ffc107;
+    color: #fff; /* Warna teks putih untuk kontras */
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    color: #fff; /* Warna teks putih untuk kontras */
+}
+
+/* Tambahkan efek hover untuk tombol agar lebih stylish */
+.btn-sm:hover {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Efek bayangan saat hover */
+    transform: translateY(-2px); /* Efek mengangkat saat hover */
+}
+
+/* Efek fokus untuk tombol */
+.btn-sm:focus {
+    outline: none; /* Menghapus outline default */
+    box-shadow: 0px 0px 10px rgba(0, 123, 255, 0.5); /* Efek glowing saat fokus */
+}
+
+
+
+
+/* Style for the card */
+.card {
+    border: 1px solid #d2d6de; /* Light gray border color */
+    border-radius: 0.5rem; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    margin-bottom: 1.5rem; /* Spacing below the card */
+}
+
+/* Header style */
+.card-header {
+    background-color: #ff4c4c; /* Bright red background */
+    color: #fff; /* White text color for better contrast */
+    padding: 1rem; /* Padding for header */
+    border-top-left-radius: 0.5rem; /* Rounded corners for header */
+    border-top-right-radius: 0.5rem; /* Rounded corners for header */
+}
+
+/* Table styles */
+.table {
+    margin: 0; /* Remove margin */
+    border-collapse: collapse; /* Ensure no space between borders */
+}
+
+/* Table header styles */
+.table thead th {
+    background-color: #ff4c4c; /* Bright red for header background */
+    color: #fff; /* White text color for header */
+    padding: 0.75rem; /* Padding for header cells */
+}
+
+/* Table cell styles */
+.table tbody td {
+    padding: 0.75rem; /* Padding for body cells */
+    border: 1px solid #d2d6de; /* Light gray border for cells */
+}
+
+/* Action button styles */
+.table tbody td:last-child {
+    text-align: center; /* Center align the action buttons */
+}
+
+/* Add hover effect on rows */
+.table tbody tr:hover {
+    background-color: #ffb3b3; /* Light red background on hover */
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+    .card {
+        margin: 1rem; /* Add margin for smaller screens */
+    }
+}
+
     </style>
 </head>
 
@@ -303,13 +406,20 @@
                 <p>Suppliers</p>
             </a>
         </li>
-                  <!-- Material Submenu -->
- <li class="nav-item">
+        <!-- Material Submenu -->
+        <li class="nav-item">
             <a href="{{ url('admin/materials') }}" class="nav-link">
                 <i class="nav-icon fas fa-boxes"></i> <!-- Icon untuk Materials -->
                 <p>Materials</p>
             </a>
         </li>
+       <!-- Product Submenu -->
+      <li class="nav-item">
+      <a href="{{ url('products') }}" class="nav-link">
+      <i class="nav-icon fas fa-box-open"></i> <!-- Icon yang lebih mirip produk -->
+      <p>Products</p>
+    </a>
+</li>
     </ul>
 </li>
 <!-- Purchase Orders Submenu -->

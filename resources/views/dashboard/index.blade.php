@@ -102,6 +102,168 @@
     transform: rotate(90deg);
     transition: transform 0.3s ease;
 }
+
+
+
+
+.modal-content {
+    border-radius: 10px; /* Rounded corners */
+}
+
+.modal-header {
+    background-color: #007bff; /* Bootstrap primary color */
+    color: white; /* Text color */
+}
+
+.modal-footer {
+    border-top: none; /* Remove border */
+}
+
+.modal-body {
+    font-size: 1.1em; /* Slightly larger font */
+}
+
+
+
+
+
+/* Modal background dan konten */
+.modal-content {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    padding: 0;
+    overflow: hidden;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+/* Header modal */
+.modal-header {
+    background-color: #0069d9;
+    color: #fff;
+    border-bottom: none;
+    border-radius: 12px 12px 0 0;
+    padding: 15px 20px;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-header i {
+    margin-right: 12px;
+    font-size: 1.5rem;
+}
+
+.modal-title {
+    font-size: 1.7rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+/* Body modal */
+.modal-body {
+    color: #4a4a4a;
+    line-height: 1.8;
+    padding: 25px;
+    font-size: 1.1rem;
+    font-family: 'Open Sans', sans-serif;
+}
+
+/* Hover style untuk tautan */
+.modal-body a {
+    color: #0069d9;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.modal-body a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+/* Footer modal */
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    padding: 15px;
+    background-color: #e0e0e0; /* Warna latar belakang cerah */
+    background-image: linear-gradient(145deg, #e0e0e0, #ffffff); /* Tambahkan gradasi warna */
+    border-radius: 0 0 12px 12px;
+    box-shadow: inset 0 3px 10px rgba(0, 0, 0, 0.1); /* Tambahkan bayangan dalam */
+}
+
+.modal-footer .btn {
+    background-color: #28a745;
+    color: white;
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    font-family: 'Poppins', sans-serif;
+    margin-left: 10px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.modal-footer .btn:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+
+/* Tombol close di header */
+.modal-header .btn-close {
+    color: #fff;
+    font-size: 1.4rem;
+    opacity: 0.8;
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    transition: opacity 0.3s ease;
+}
+
+.modal-header .btn-close:hover {
+    opacity: 1;
+    color: #ffcccc;
+}
+
+/* Animasi modal saat muncul */
+.modal.fade .modal-dialog {
+    transform: scale(0.8);
+    opacity: 0;
+}
+
+.modal.show .modal-dialog {
+    transform: scale(1);
+    opacity: 1;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+/* Gaya kotak bayangan dan animasi halus */
+.modal-dialog {
+    transition: all 0.3s ease-in-out;
+    margin: 30px auto;
+}
+
+/* Responsif untuk tampilan lebih kecil */
+@media (max-width: 576px) {
+    .modal-content {
+        padding: 0;
+    }
+    .modal-header {
+        padding: 15px;
+    }
+    .modal-body {
+        padding: 15px;
+        font-size: 1rem;
+    }
+    .modal-footer .btn {
+        padding: 8px 16px;
+        font-size: 1rem;
+    }
+}
+
+
     </style>
 </head>
 <body class="hold-transition sidebar-mini">
@@ -283,7 +445,7 @@
         <p>Dashboard</p>
     </a>
 </li>
-                      <!-- Master Data Menu with Submenus -->
+                     <!-- Master Data Menu with Submenus -->
 <li class="nav-item has-treeview">
     <a href="#" class="nav-link">
         <i class="nav-icon fas fa-database"></i>
@@ -300,20 +462,27 @@
                 <p>Users</p>
             </a>
         </li>
-       <!-- Supplier Submenu -->
-       <li class="nav-item">
+        <!-- Supplier Submenu -->
+        <li class="nav-item">
             <a href="{{ url('admin/suppliers') }}" class="nav-link">
                 <i class="nav-icon fas fa-truck"></i> <!-- Icon untuk Suppliers -->
                 <p>Suppliers</p>
             </a>
         </li>
- <!-- Material Submenu -->
- <li class="nav-item">
+        <!-- Material Submenu -->
+        <li class="nav-item">
             <a href="{{ url('admin/materials') }}" class="nav-link">
                 <i class="nav-icon fas fa-boxes"></i> <!-- Icon untuk Materials -->
                 <p>Materials</p>
             </a>
         </li>
+       <!-- Product Submenu -->
+      <li class="nav-item">
+      <a href="{{ url('products') }}" class="nav-link">
+      <i class="nav-icon fas fa-box-open"></i> <!-- Icon yang lebih mirip produk -->
+      <p>Products</p>
+    </a>
+</li>
     </ul>
 </li>
 <li class="nav-item">
@@ -372,59 +541,93 @@
                 </div>
             </div>
 
+           
+           <!-- Modal -->
+    <div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="infoModalLabel">Informasi</h5>
+                    <button type="button" class="btn-close" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="modalBody">
+                    <!-- Konten modal akan diisi melalui JavaScript -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
             <!-- Main content -->
-            <section class="content">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-lg-3 col-6">
-                            <div class="small-box bg-info">
-                                <div class="inner">
-                                    <h3 id="totalUsers">80</h3>
-                                    <p>Total Users</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fas fa-users"></i>
-                                </div>
-                                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-6">
-                            <div class="small-box bg-success">
-                                <div class="inner">
-                                    <h3 id="totalSuppliers">50</h3>
-                                    <p>Total Suppliers</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fas fa-industry"></i>
-                                </div>
-                                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-6">
-                            <div class="small-box bg-warning">
-                                <div class="inner">
-                                    <h3 id="totalMaterials">120</h3>
-                                    <p>Total Materials</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fas fa-cogs"></i>
-                                </div>
-                                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-6">
-                            <div class="small-box bg-danger">
-                                <div class="inner">
-                                    <h3 id="totalOrders">75</h3>
-                                    <p>Purchase Orders</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fas fa-shopping-cart"></i>
-                                </div>
-                                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-info">
+                    <div class="inner">
+                        <h3 id="totalUsers">80</h3>
+                        <p>Total Users</p>
                     </div>
+                    <div class="icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-success">
+                    <div class="inner">
+                        <h3 id="totalSuppliers">50</h3>
+                        <p>Total Suppliers</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-warning">
+                    <div class="inner">
+                        <h3 id="totalMaterials">120</h3>
+                        <p>Total Materials</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-danger">
+                    <div class="inner">
+                        <h3 id="totalOrders">75</h3>
+                        <p>Purchase Orders</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- New section for Total Products -->
+            <div class="col-lg-3 col-6">
+                <div class="small-box" style="background-color: #6f42c1; color: white;"> <!-- Purple color for products -->
+                    <div class="inner">
+                        <h3 id="totalProducts">150</h3> <!-- Initial count for total products -->
+                        <p>Total Products</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-box"></i> <!-- Icon for products -->
+                    </div>
+                    <a href="#" class="small-box-footer" style="color: white;">More info <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
    
 <!-- Modal -->
@@ -984,37 +1187,79 @@ sendButton.addEventListener('click', sendMessage);
 
 $(document).ready(function() {
     $('.small-box-footer').on('click', function(e) {
-        e.preventDefault(); // Mencegah perilaku default link
+        e.preventDefault(); // Mencegah link default
 
         let info = '';
+        let title = '';
+        let link = '';
 
-        // Menentukan informasi yang ditampilkan di modal berdasarkan kotak yang diklik
-        if ($(this).closest('.small-box').find('.inner h3').attr('id') === 'totalUsers') {
-            info = 'Di sini Anda dapat menemukan informasi lebih lanjut tentang total pengguna.';
-        } else if ($(this).closest('.small-box').find('.inner h3').attr('id') === 'totalSuppliers') {
-            info = 'Di sini Anda dapat menemukan informasi lebih lanjut tentang total pemasok.';
-        } else if ($(this).closest('.small-box').find('.inner h3').attr('id') === 'totalMaterials') {
-            info = 'Di sini Anda dapat menemukan informasi lebih lanjut tentang total bahan.';
-        } else if ($(this).closest('.small-box').find('.inner h3').attr('id') === 'totalOrders') {
-            info = 'Di sini Anda dapat menemukan informasi lebih lanjut tentang total pesanan.';
+        // Tentukan informasi yang akan ditampilkan di modal berdasarkan box yang diklik
+        const boxId = $(this).closest('.small-box').find('.inner h3').attr('id');
+        
+        if (boxId === 'totalUsers') {
+            title = '<i class="fas fa-user"></i> Total Pengguna';
+            info = '<strong>Total Pengguna:</strong> 1500 pengguna terdaftar di sistem.<br><br>' +
+                   '<strong>Rincian:</strong><br>' +
+                   '- Pengguna aktif: 1200<br>' +
+                   '- Pengguna tidak aktif: 300<br>' +
+                   '- Pengguna baru bulan ini: 100<br>' +
+                   '- Pengguna premium: 250<br>';
+            link = 'https://example.com/users';
+        } else if (boxId === 'totalSuppliers') {
+            title = '<i class="fas fa-truck"></i> Total Pemasok';
+            info = '<strong>Total Pemasok:</strong> 100 pemasok terdaftar.<br><br>' +
+                   '<strong>Rincian:</strong><br>' +
+                   '- Pemasok aktif: 80<br>' +
+                   '- Pemasok tidak aktif: 20<br>' +
+                   '- Pemasok baru bulan ini: 5<br>' +
+                   '- Rata-rata waktu respons: 24 jam<br>';
+            link = 'https://example.com/suppliers';
+        } else if (boxId === 'totalMaterials') {
+            title = '<i class="fas fa-boxes"></i> Total Bahan';
+            info = '<strong>Total Bahan:</strong> 200 jenis bahan tersedia.<br><br>' +
+                   '<strong>Rincian:</strong><br>' +
+                   '- Bahan tersedia: 150<br>' +
+                   '- Bahan dalam pemesanan: 50<br>' +
+                   '- Bahan baru ditambahkan bulan ini: 10<br>' +
+                   '- Rata-rata stok per bahan: 20 unit<br>';
+            link = 'https://example.com/materials';
+        } else if (boxId === 'totalOrders') {
+            title = '<i class="fas fa-shopping-cart"></i> Total Pesanan';
+            info = '<strong>Total Pesanan:</strong> 750 pesanan diproses.<br><br>' +
+                   '<strong>Rincian:</strong><br>' +
+                   '- Pesanan berhasil: 700<br>' +
+                   '- Pesanan gagal: 50<br>' +
+                   '- Pesanan baru bulan ini: 150<br>' +
+                   '- Rata-rata waktu pengiriman: 3 hari<br>';
+            link = 'https://example.com/purchase-orders';
+        } else if (boxId === 'totalProducts') {
+            title = '<i class="fas fa-box-open"></i> Total Produk';
+            info = '<strong>Total Produk:</strong> 300 produk tersedia.<br><br>' +
+                   '<strong>Rincian:</strong><br>' +
+                   '- Produk aktif: 250<br>' +
+                   '- Produk tidak aktif: 50<br>' +
+                   '- Produk baru ditambahkan bulan ini: 20<br>' +
+                   '- Rata-rata penjualan per produk: 30 unit/bulan<br>';
+            link = 'https://example.com/products';
         }
 
-        // Mengisi modal dengan informasi yang sesuai
-        $('#modalBody').text(info);
-        // Menampilkan modal
+        // Isi modal dengan informasi yang sesuai
+        $('#infoModalLabel').html(title);
+        $('#modalBody').html(info + '<br><i class="fas fa-info-circle"></i> Untuk informasi lebih lanjut, kunjungi <a href="' + link + '" target="_blank">tautan ini</a>.');
+
+        // Tampilkan modal
         $('#infoModal').modal('show');
     });
 
-    // Event untuk tombol tutup di modal
+    // Event untuk tombol close pada modal
     $('#infoModal .btn-close, #infoModal .btn-secondary').on('click', function() {
-        console.log('Tombol tutup diklik'); // Log ke konsol
         $('#infoModal').modal('hide'); // Menutup modal
     });
-});
 
-
-$(document).ready(function() {
-    // ... (kode lainnya)
+    // Event untuk tombol "More Info"
+    $('#modalMoreInfo').on('click', function() {
+        alert('Ini bisa diarahkan ke informasi lebih lanjut.'); // Perbarui sesuai kebutuhan
+    });
 
     // Event untuk menutup modal saat tombol Escape ditekan
     $(document).on('keydown', function(e) {
@@ -1024,6 +1269,16 @@ $(document).ready(function() {
         }
     });
 });
+
+
+
+
+
+
+
+
+
+
 
 
 

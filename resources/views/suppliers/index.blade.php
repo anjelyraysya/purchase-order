@@ -101,6 +101,61 @@
     transform: rotate(90deg);
     transition: transform 0.3s ease;
 }
+
+
+
+/* Style for the card */
+.card {
+    border: 1px solid #d2d6de; /* Light gray border color */
+    border-radius: 0.5rem; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Header style */
+.card-header {
+    background-color: #28a745; /* Leaf green background color */
+    color: white; /* Header text color */
+    padding: 1rem; /* Padding for header */
+    border-top-left-radius: 0.5rem; /* Rounded corners for header */
+    border-top-right-radius: 0.5rem; /* Rounded corners for header */
+}
+
+/* Table styles */
+.table {
+    margin: 0; /* Remove margin */
+    border-collapse: collapse; /* Ensure no space between borders */
+}
+
+/* Table header styles */
+.table thead th {
+    background-color: #28a745; /* Leaf green for header background */
+    color: white; /* Header text color */
+    padding: 0.75rem; /* Padding for header cells */
+}
+
+/* Table cell styles */
+.table tbody td {
+    padding: 0.75rem; /* Padding for body cells */
+    border: 1px solid #d2d6de; /* Light gray border for cells */
+}
+
+/* Action button styles */
+.table tbody td:last-child {
+    text-align: center; /* Center align the action buttons */
+}
+
+/* Add hover effect on rows */
+.table tbody tr:hover {
+    background-color: #d4edda; /* Light green background on hover */
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+    .card {
+        margin: 1rem; /* Add margin for smaller screens */
+    }
+}
+
     </style>
 </head>
 
@@ -302,13 +357,20 @@
         <p>Suppliers</p>
     </a>
 </li>
- <!-- Material Submenu -->
- <li class="nav-item">
+  <!-- Material Submenu -->
+  <li class="nav-item">
             <a href="{{ url('admin/materials') }}" class="nav-link">
                 <i class="nav-icon fas fa-boxes"></i> <!-- Icon untuk Materials -->
                 <p>Materials</p>
             </a>
         </li>
+       <!-- Product Submenu -->
+      <li class="nav-item">
+      <a href="{{ url('products') }}" class="nav-link">
+      <i class="nav-icon fas fa-box-open"></i> <!-- Icon yang lebih mirip produk -->
+      <p>Products</p>
+    </a>
+</li>
     </ul>
 </li>
 <li class="nav-item">
@@ -317,7 +379,6 @@
         <p>Purchase Orders</p>
     </a>
 </li>
-
                  <!-- Labels Section -->
             <li class="nav-header">LABELS</li>
 
