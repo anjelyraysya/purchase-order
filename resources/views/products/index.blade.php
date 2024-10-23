@@ -355,6 +355,332 @@ td .btn {
     }
 }
 
+
+
+
+
+/* Modal background dan konten */
+.modal-content {
+    background: linear-gradient(135deg, #f9f3ff 0%, #e8d8f1 100%); /* Gradasi warna ungu muda */
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    padding: 0;
+    overflow: hidden;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+/* Header modal */
+.modal-header {
+    background-color: #7a4b9d; /* Warna ungu */
+    color: #ffffff;
+    border-bottom: none;
+    border-radius: 15px 15px 0 0;
+    padding: 20px;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header i {
+    margin-right: 12px;
+    font-size: 1.8rem;
+}
+
+.modal-title {
+    font-size: 2rem; /* Ukuran judul lebih besar */
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+/* Body modal */
+.modal-body {
+    color: #333333;
+    line-height: 1.6;
+    padding: 30px;
+    font-size: 1.1rem;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* Hover style untuk tautan */
+.modal-body a {
+    color: #7a4b9d; /* Warna tautan ungu */
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease, transform 0.3s ease; /* Tambahkan efek transform saat hover */
+}
+
+.modal-body a:hover {
+    color: #5e3a7e; /* Warna saat hover lebih gelap */
+    transform: scale(1.05); /* Efek pembesaran */
+    text-decoration: underline;
+}
+
+/* Footer modal */
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px;
+    background-color: #f8f9fa; /* Warna latar belakang cerah */
+    border-radius: 0 0 15px 15px;
+    box-shadow: inset 0 -1px 5px rgba(0, 0, 0, 0.1); /* Bayangan dalam */
+}
+
+/* Gaya untuk tombol */
+.modal-footer .btn {
+    color: white;
+    border: none; /* Hapus border default */
+    border-radius: 25px; /* Bentuk tombol lebih halus */
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    font-family: 'Poppins', sans-serif;
+    margin-left: 10px;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Warna untuk tombol yang berbeda */
+.btn-simpan {
+    background-color: #28a745; /* Hijau untuk tombol Simpan */
+}
+
+.btn-simpan:hover {
+    background-color: #218838; /* Warna lebih gelap saat hover */
+}
+
+.btn-perbarui {
+    background-color: #007bff; /* Biru untuk tombol Perbarui */
+}
+
+.btn-perbarui:hover {
+    background-color: #0069d9; /* Warna lebih gelap saat hover */
+}
+
+.btn-batal {
+    background-color: #dc3545; /* Merah untuk tombol Batal */
+}
+
+.btn-batal:hover {
+    background-color: #c82333; /* Warna lebih gelap saat hover */
+}
+
+.btn-hapus {
+    background-color: #ff9800; /* Oranye untuk tombol Hapus */
+}
+
+.btn-hapus:hover {
+    background-color: #fb8c00; /* Warna lebih gelap saat hover */
+}
+
+.btn-tutup {
+    background-color: #6c757d; /* Abu-abu untuk tombol Tutup */
+}
+
+.btn-tutup:hover {
+    background-color: #5a6268; /* Warna lebih gelap saat hover */
+}
+
+/* Tombol close di header */
+.modal-header .btn-close {
+    background: none; /* Hapus background */
+    border: none; /* Hapus border */
+    color: #ffffff;
+    font-size: 1.6rem;
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
+}
+
+.modal-header .btn-close:hover {
+    opacity: 1;
+    color: #ffcccb; /* Warna saat hover */
+}
+
+/* Animasi modal saat muncul */
+.modal.fade .modal-dialog {
+    transform: scale(0.9);
+    opacity: 0;
+}
+
+.modal.show .modal-dialog {
+    transform: scale(1);
+    opacity: 1;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+/* Gaya kotak bayangan dan animasi halus */
+.modal-dialog {
+    transition: all 0.3s ease-in-out;
+    margin: 30px auto;
+}
+
+/* Responsif untuk tampilan lebih kecil */
+@media (max-width: 576px) {
+    .modal-content {
+        padding: 0;
+    }
+    .modal-header {
+        padding: 15px;
+    }
+    .modal-body {
+        padding: 15px;
+        font-size: 1rem;
+    }
+    .modal-footer .btn {
+        padding: 10px 20px;
+        font-size: 1rem;
+    }
+}
+
+
+
+
+
+/* Styling untuk swal2-popup */
+.swal2-popup {
+    background: linear-gradient(145deg, #f0e3ff, #e5c3ff); /* Gradasi ungu pastel yang lebih lembut */
+    border-radius: 25px; /* Sudut lebih melingkar */
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25); /* Bayangan lebih dramatis */
+    position: relative; /* Untuk positioning kotak di atas */
+    padding: 40px; /* Padding untuk ruang lebih */
+    border: none; /* Menghapus border default */
+}
+
+/* Kotak hiasan di atas judul */
+.swal2-header-decoration {
+    background: linear-gradient(145deg, #6d2c91, #5e1f7b); /* Gradasi kotak hiasan */
+    height: 20px; /* Tinggi kotak hiasan */
+    width: 100%; /* Lebar penuh */
+    border-radius: 25px 25px 0 0; /* Melingkar pada bagian atas */
+    position: absolute;
+    top: -20px; /* Letakkan tepat di atas popup */
+    left: 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Bayangan lembut */
+}
+
+/* Kotak berwarna di atas judul */
+.swal2-header-box {
+    background: linear-gradient(145deg, #6d2c91, #5e1f7b); /* Gradasi kotak atas lebih berani */
+    height: 80px; /* Tinggi kotak lebih besar */
+    width: 100%;
+    position: absolute;
+    top: -60px; /* Letakkan lebih tinggi */
+    left: 0;
+    border-radius: 25px 25px 0 0;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25); /* Bayangan lebih lembut */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 28px; /* Ukuran teks lebih besar */
+    font-weight: 700; /* Teks lebih tebal */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Bayangan teks lebih tajam */
+}
+
+/* Styling untuk swal2-title */
+.swal2-title {
+    color: #6d2c91;
+    font-size: 30px; /* Ukuran font lebih besar */
+    font-weight: 700;
+    margin-top: 80px; /* Tambahkan jarak atas */
+    margin-bottom: 20px; /* Tambahkan jarak bawah */
+    text-align: center;
+    letter-spacing: 1.5px; /* Sedikit jarak antar huruf */
+}
+
+/* Styling untuk swal2-input */
+.swal2-input {
+    border: 2px solid #d0d0d0;
+    border-radius: 12px; /* Sudut input lebih halus */
+    padding: 15px; /* Padding lebih besar */
+    font-size: 20px; /* Ukuran font lebih besar */
+    width: 100%;
+    margin-bottom: 25px;
+    transition: all 0.3s ease; /* Animasi transisi */
+    background-color: rgba(255, 255, 255, 0.95); /* Background input transparan */
+}
+
+/* Efek saat input difokuskan */
+.swal2-input:focus {
+    border-color: #6d2c91; /* Warna border lebih kuat saat fokus */
+    box-shadow: 0 0 10px rgba(109, 44, 145, 0.5);
+    outline: none; /* Hapus outline default */
+}
+
+/* Styling tombol tambah dengan ikon di atasnya */
+.swal2-add-container {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 30px;
+}
+
+.swal2-add-container .swal2-add-icon {
+    position: absolute;
+    top: -40px; /* Letakkan sedikit lebih tinggi */
+    left: 50%;
+    transform: translateX(-50%);
+    background: radial-gradient(circle, #6d2c91, #5e1f7b); /* Gradasi radial pada ikon */
+    color: white;
+    border-radius: 50%;
+    width: 60px; /* Lebar ikon */
+    height: 60px; /* Tinggi ikon */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px; /* Ukuran teks di ikon */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease; /* Transisi halus */
+}
+
+/* Hover efek pada icon */
+.swal2-add-container .swal2-add-icon:hover {
+    background: radial-gradient(circle, #5e1f7b, #4b1a62); /* Warna saat hover */
+    transform: translateX(-50%) scale(1.15); /* Sedikit memperbesar saat hover */
+}
+
+/* Styling untuk tombol swal2-confirm */
+.swal2-add-container .swal2-confirm {
+    background: linear-gradient(145deg, #6d2c91, #5e1f7b);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 15px 35px; /* Padding lebih besar */
+    font-size: 20px; /* Ukuran font lebih besar */
+    cursor: pointer;
+    margin-top: 20px; /* Jarak atas tombol */
+    display: block;
+    transition: all 0.3s ease; /* Transisi halus */
+    text-transform: uppercase; /* Ubah teks jadi kapital */
+}
+
+/* Efek hover untuk tombol swal2-confirm */
+.swal2-add-container .swal2-confirm:hover {
+    background: linear-gradient(145deg, #5e1f7b, #4b1a62); /* Gradasi lebih gelap saat hover */
+    transform: scale(1.05); /* Efek memperbesar sedikit saat hover */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4); /* Tambah bayangan saat hover */
+}
+
+/* Styling untuk swal2-cancel */
+.swal2-cancel {
+    background-color: #f7f7f7;
+    color: #6d2c91;
+    border: 1px solid #d6d6d6;
+    border-radius: 12px;
+    padding: 15px 30px; /* Padding lebih besar */
+    font-size: 18px; /* Ukuran font lebih besar */
+    cursor: pointer;
+    transition: all 0.3s ease; /* Transisi halus */
+}
+
+/* Efek hover untuk swal2-cancel */
+.swal2-cancel:hover {
+    background-color: #e8d3f3; /* Warna lebih terang saat hover */
+    border-color: #bdb3e6; /* Border lebih cerah */
+}
+
+
+
+
+
 </style>
 
 </head>
@@ -483,9 +809,12 @@ td .btn {
         </button>
       </div>
       <div class="modal-body">
-        <p>Name : namamemberbaru</p>
-        <p>Email : memberru@example.com</p>
-        <button type="button" class="btn btn-danger">Logout</button>
+        <p>Name: contohnamamemberbaru</p>
+        <p>Email: namamemberru@example.com</p>
+        <form action="http://localhost:8000/logout" method="POST" id="logoutForm" style="display: inline;">
+            @csrf <!-- Token CSRF untuk keamanan -->
+            <button type="submit" class="btn btn-danger">Logout</button>
+        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -816,7 +1145,6 @@ td .btn {
 
 
 
-
 <!-- Script JS -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -867,34 +1195,25 @@ const productDimensions = [
 ];
 
 
-
-
-
-
-
-
-
-
-
-
-
-
    // Fungsi untuk menampilkan produk di tabel
-function displayProducts(products) {
-    const tableBody = $('#productTableBody');
-    tableBody.empty(); // Hapus data yang sudah ada
+   function displayProducts(products) {
+        const tableBody = $('#productTableBody');
+        tableBody.empty(); // Hapus data yang sudah ada
 
-    products.forEach((product, index) => {
-        // Tambahkan data dimensi ke produk jika tersedia
-        const dimensions = productDimensions[index % productDimensions.length]; // Menggunakan data dimensi berdasarkan indeks
-        product.width = dimensions.width;
-        product.height = dimensions.height;
-        product.depth = dimensions.depth;
+        products.forEach((product, index) => {
+            // Tambahkan data dimensi ke produk jika tersedia
+            const dimensions = productDimensions[index % productDimensions.length]; // Menggunakan data dimensi berdasarkan indeks
 
-        // Menambahkan properti tambahan
-        product.createdAt = new Date().toISOString(); // Menggunakan tanggal saat ini
-        product.updatedAt = new Date().toISOString(); // Menggunakan tanggal saat ini
-        product.barcode = Math.floor(Math.random() * 10000000000000);
+            // Menggunakan data dimensi
+            product.width = dimensions.width;
+            product.height = dimensions.height;
+            product.depth = dimensions.depth;
+            product.barcode = dimensions.barcode; // Menggunakan barcode dari data dimensi
+
+            // Menggunakan tanggal dari produk
+            product.createdAt = product.createdAt || dimensions.createdAt; // Jika tidak ada createdAt, gunakan dari dimensions
+            product.updatedAt = product.updatedAt || dimensions.updatedAt; // Jika tidak ada updatedAt, gunakan dari dimensions
+
 
         const qrCodeImageUrl = product.qrCode || `https://api.qrserver.com/v1/create-qr-code/?data=${product.id}&size=100x100`;
 
@@ -924,16 +1243,16 @@ function displayProducts(products) {
                 <td>${product.updatedAt || 'Tidak Ada Tanggal Pembaruan'}</td>
                 <td>${product.barcode || 'No Barcode'}</td>
                 <td><img src="${qrCodeImageUrl}" alt="QR Code" style="width: 100px; height: auto;"></td>
+                <!-- Dalam tabel produk -->
                 <td>
                 <!-- Tombol Edit dengan ikon pensil -->
                 <button class="btn btn-warning btn-sm edit-product equal-btn" data-id="${product.id}">
                 <i class="fas fa-edit"></i> Edit
                 </button>
-                <!-- Tambahkan jarak antar tombol dengan margin -->
                 <button class="btn btn-danger btn-sm delete-product equal-btn" data-id="${product.id}">
                 <i class="fas fa-trash-alt"></i> Hapus
                 </button>
-            </td>
+
             </tr>
         `);
     });
@@ -972,7 +1291,7 @@ function deleteProduct(productId) {
             Swal.fire(
                 'Dihapus!',
                 'Produk telah berhasil dihapus.',
-                'success'
+                'Success'
             );
         }
     });
@@ -1004,7 +1323,6 @@ async function editProduct(productId) {
     const currentDiscount = row.find('td:nth-child(6)').text();
     const currentRating = row.find('td:nth-child(7)').text();
     const currentStock = row.find('td:nth-child(8)').text();
-    const currentThumbnailSrc = row.find('td:nth-child(9) img.thumbnail').attr('src');
     const currentTags = row.find('td:nth-child(10)').text();
     const currentSKU = row.find('td:nth-child(11)').text();
     const currentWeight = row.find('td:nth-child(12)').text();
@@ -1019,7 +1337,8 @@ async function editProduct(productId) {
     const currentCreatedAt = row.find('td:nth-child(21)').text();
     const currentUpdatedAt = row.find('td:nth-child(22)').text();
     const currentBarcode = row.find('td:nth-child(23)').text();
-    const currentQrCodeSrc = row.find('td:nth-child(24) img.qr-code').attr('src');
+    const currentImageUrl = row.find('td:nth-child(9) img').attr('src');
+    const currentQrCodeUrl = row.find('td:nth-child(24) img').attr('src'); // Add this line for QR code
 
     const { value: formValues } = await Swal.fire({
         title: 'Edit Produk',
@@ -1109,14 +1428,14 @@ async function editProduct(productId) {
                 <input id="swal-input-barcode" class="swal2-input" placeholder="Barcode" value="${currentBarcode}">
             </div>
             <div class="form-group">
-                <label>Thumbnail</label>
-                <input id="swal-input-thumbnail" type="file" class="swal2-input" accept="image/*">
-                <img id="thumbnail-preview" src="${currentThumbnailSrc}" style="width: 100px; margin-top: 10px;">
+                <label>Thumbnail Gambar</label>
+                <input type="file" id="swal-input-image" class="swal2-input" accept="image/*" onchange="previewImage(event)">
+                <img id="image-preview" src="${currentImageUrl}" alt="Image Preview" style="width: 100%; margin-top: 10px;" />
             </div>
             <div class="form-group">
-                <label>Kode QR</label>
-                <input id="swal-input-qrcode" type="file" class="swal2-input" accept="image/*">
-                <img id="qrcode-preview" src="${currentQrCodeSrc}" style="width: 100px; margin-top: 10px;">
+                <label>QR Code Gambar</label>
+                <input type="file" id="swal-input-qr-code-image" class="swal2-input" accept="image/*" onchange="previewQrCodeImage(event)">
+                <img id="qr-code-image-preview" src="${currentQrCodeUrl}" alt="QR Code Preview" style="width: 100%; margin-top: 10px;" />
             </div>`,
         focusConfirm: false,
         preConfirm: () => {
@@ -1142,9 +1461,9 @@ async function editProduct(productId) {
                 created: document.getElementById('swal-input-created').value,
                 updated: document.getElementById('swal-input-updated').value,
                 barcode: document.getElementById('swal-input-barcode').value,
-                thumbnail: document.getElementById('swal-input-thumbnail').files[0],
-                qrCode: document.getElementById('swal-input-qrcode').files[0],
-            }
+                image: document.getElementById('swal-input-image').files[0], // Include image file
+                qrCodeImage: document.getElementById('swal-input-qr-code-image').files[0], // Include QR code image file
+            };
         }
     });
 
@@ -1172,51 +1491,57 @@ async function editProduct(productId) {
         row.find('td:nth-child(21)').text(formValues.created);
         row.find('td:nth-child(22)').text(formValues.updated);
         row.find('td:nth-child(23)').text(formValues.barcode);
-
-        // Perbarui gambar thumbnail dan qr-code jika ada file baru yang diunggah
-        if (formValues.thumbnail) {
-            const thumbnailReader = new FileReader();
-            thumbnailReader.onload = function (e) {
-                row.find('td:nth-child(9) img.thumbnail').attr('src', e.target.result);
-            };
-            thumbnailReader.readAsDataURL(formValues.thumbnail);
+        
+        // Update the image if a new file was uploaded
+        if (formValues.image) {
+            const imageUrl = URL.createObjectURL(formValues.image);
+            row.find('td:nth-child(9) img').attr('src', imageUrl); // Update the image preview in the table
         }
 
-        if (formValues.qrCode) {
-            const qrCodeReader = new FileReader();
-            qrCodeReader.onload = function (e) {
-                row.find('td:nth-child(24) img.qr-code').attr('src', e.target.result);
-            };
-            qrCodeReader.readAsDataURL(formValues.qrCode);
+        // Update the QR code image if a new file was uploaded
+        if (formValues.qrCodeImage) {
+            const qrCodeImageUrl = URL.createObjectURL(formValues.qrCodeImage);
+            row.find('td:nth-child(24) img').attr('src', qrCodeImageUrl); // Update the QR code image preview in the table
         }
 
-        // Tampilkan notifikasi sukses
-        Swal.fire('Berhasil!', 'Data produk berhasil diperbarui.', 'success');
-    } else {
-        Swal.fire('Dibatalkan', 'Perubahan tidak disimpan', 'info');
+        // Show a success notification
+        Swal.fire({
+            title: 'Berhasil!',
+            text: 'Produk berhasil diperbarui.',
+            icon: 'success',
+            confirmButtonText: 'OK'
+        });
+
+        // Panggil API untuk memperbarui data produk di server
+        // (Implementasi panggilan API untuk memperbarui produk di server dapat dilakukan di sini)
     }
 }
 
+// Function to preview the selected image
+function previewImage(event) {
+    const imagePreview = document.getElementById('image-preview');
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            imagePreview.src = e.target.result; // Set the image preview to the selected file
+        }
+        reader.readAsDataURL(file);
+    }
+}
 
-// Event listener for file input changes to show previews
-$(document).on('change', '#swal-input-thumbnail', function() {
-    const file = this.files[0];
-    const reader = new FileReader();
-    reader.onload = function(e) {
-        $('#thumbnail-preview').attr('src', e.target.result);
-    };
-    reader.readAsDataURL(file);
-});
-
-$(document).on('change', '#swal-input-qrcode', function() {
-    const file = this.files[0];
-    const reader = new FileReader();
-    reader.onload = function(e) {
-        $('#qrcode-preview').attr('src', e.target.result);
-    };
-    reader.readAsDataURL(file);
-});
-
+// Function to preview the selected QR code image
+function previewQrCodeImage(event) {
+    const qrCodeImagePreview = document.getElementById('qr-code-image-preview');
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            qrCodeImagePreview.src = e.target.result; // Set the QR code image preview to the selected file
+        }
+        reader.readAsDataURL(file);
+    }
+}
 
 
 
@@ -1228,7 +1553,6 @@ $(document).on('click', '.edit-product', function() {
 });
 
 
-
 // Event listener untuk tombol hapus
 $(document).on('click', '.delete-product', function() {
     const productId = $(this).data('id');
@@ -1236,54 +1560,9 @@ $(document).on('click', '.delete-product', function() {
 });
 
 
-
     // Menampilkan tahun saat ini di footer
     $("#currentYear").text(new Date().getFullYear());
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1394,8 +1673,8 @@ function deleteProduct(button) {
         text: "Produk ini akan dihapus!",
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#d33',
-        cancelButtonColor: '#3085d6',
+        confirmButtonColor: '#0245A3', 
+        cancelButtonColor: '#B8001F',
         confirmButtonText: 'Hapus!',
         cancelButtonText: 'Batal'
     }).then((result) => {
@@ -1408,7 +1687,7 @@ function deleteProduct(button) {
 
             // Notifikasi produk berhasil dihapus
             Swal.fire({
-                icon: 'success',
+                icon: 'Success',
                 title: 'Berhasil!',
                 text: 'Produk berhasil dihapus! Klik OK untuk melanjutkan.',
                 showConfirmButton: true,
@@ -1517,8 +1796,8 @@ document.addEventListener('DOMContentLoaded', function() {
             text: "You will be logged out.",
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#d33',
-            cancelButtonColor: '#3085d6',
+            confirmButtonColor: '#11468F',
+            cancelButtonColor: '#B8001F',
             confirmButtonText: 'Yes, log me out!'
         }).then((result) => {
             if (result.isConfirmed) {
@@ -1534,8 +1813,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
-
-
 
 
 
@@ -1671,3 +1948,10 @@ document.head.appendChild(style);
 
 
 </script>
+
+
+
+
+
+
+

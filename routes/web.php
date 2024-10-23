@@ -7,6 +7,8 @@ use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\PurchaseOrderController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Auth\LogoutController;
 
 // Rute untuk halaman utama
 Route::get('/', function () {
@@ -63,5 +65,31 @@ Route::get('/product/api', [ProductController::class, 'indexFromApi'])->name('pr
 
 // Route untuk menyimpan produk dari API ke database
 Route::get('/products/store', [ProductController::class, 'storeProductsFromApi'])->name('products.store');
+
+// Menampilkan halaman login
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+
+// Mengirimkan data login (email dan password) ke server untuk diproses
+Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
+
+// Mengirimkan permintaan logout untuk mengeluarkan pengguna dari sesi
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+// Rute untuk logout
+Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
+
+
+// Route untuk menampilkan halaman logout
+Route::get('/logout', function () {
+    // Mengembalikan tampilan 'logout' untuk konfirmasi logout
+    return view('Auth.logout');
+})->name('logout'); // Menamakan logout ini sebagai 'logout'
+
+
+// Route untuk menangani logout
+Route::post('/logout', [LogoutController::class, 'logout'])->name('logout.perform');
+
+// Route untuk proses logout
+Route::post('/logout', [App\Http\Controllers\Auth\LogoutController::class, 'logout'])->name('logout');
 
 ?>

@@ -206,6 +206,184 @@ td .btn {
     }
 }
 
+
+
+
+
+
+
+/* Modal background dan konten */
+.modal-content {
+    background: linear-gradient(135deg, #ffcccc 0%, #ffffff 100%); /* Gradasi warna merah muda ke putih */
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    padding: 0;
+    overflow: hidden;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+/* Header modal */
+.modal-header {
+    background-color: #ff0000; /* Warna merah */
+    color: #ffffff;
+    border-bottom: none;
+    border-radius: 15px 15px 0 0;
+    padding: 20px;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header i {
+    margin-right: 12px;
+    font-size: 1.8rem;
+}
+
+.modal-title {
+    font-size: 2rem; /* Ukuran judul lebih besar */
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+/* Body modal */
+.modal-body {
+    color: #333333;
+    line-height: 1.6;
+    padding: 30px;
+    font-size: 1.1rem;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* Hover style untuk tautan */
+.modal-body a {
+    color: #ff0000; /* Warna tautan merah */
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease, transform 0.3s ease; /* Tambahkan efek transform saat hover */
+}
+
+.modal-body a:hover {
+    color: #c70000; /* Warna saat hover lebih gelap */
+    transform: scale(1.05); /* Efek pembesaran */
+    text-decoration: underline;
+}
+
+/* Footer modal */
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px;
+    background-color: #ffcccc; /* Warna latar belakang cerah merah muda */
+    border-radius: 0 0 15px 15px;
+    box-shadow: inset 0 -1px 5px rgba(0, 0, 0, 0.1); /* Bayangan dalam */
+}
+
+/* Gaya untuk tombol */
+.modal-footer .btn {
+    color: white;
+    border: none; /* Hapus border default */
+    border-radius: 25px; /* Bentuk tombol lebih halus */
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    font-family: 'Poppins', sans-serif;
+    margin-left: 10px;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Warna untuk tombol */
+.btn-simpan {
+    background-color: #28a745; /* Hijau untuk tombol Simpan */
+}
+
+.btn-simpan:hover {
+    background-color: #218838; /* Warna lebih gelap saat hover */
+}
+
+.btn-perbarui {
+    background-color: #007bff; /* Biru untuk tombol Perbarui */
+}
+
+.btn-perbarui:hover {
+    background-color: #0069d9; /* Warna lebih gelap saat hover */
+}
+
+.btn-batal {
+    background-color: #dc3545; /* Merah untuk tombol Batal */
+}
+
+.btn-batal:hover {
+    background-color: #c82333; /* Warna lebih gelap saat hover */
+}
+
+.btn-hapus {
+    background-color: #ffc107; /* Kuning untuk tombol Hapus */
+}
+
+.btn-hapus:hover {
+    background-color: #e0a800; /* Warna lebih gelap saat hover */
+}
+
+.btn-tutup {
+    background-color: #6c757d; /* Abu-abu untuk tombol Tutup */
+}
+
+.btn-tutup:hover {
+    background-color: #5a6268; /* Warna lebih gelap saat hover */
+}
+
+/* Tombol close di header */
+.modal-header .btn-close {
+    background: none; /* Hapus background */
+    border: none; /* Hapus border */
+    color: #ffffff;
+    font-size: 1.6rem;
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
+}
+
+.modal-header .btn-close:hover {
+    opacity: 1;
+    color: #ffcccc; /* Warna merah muda terang saat hover */
+}
+
+/* Animasi modal saat muncul */
+.modal.fade .modal-dialog {
+    transform: scale(0.9);
+    opacity: 0;
+}
+
+.modal.show .modal-dialog {
+    transform: scale(1);
+    opacity: 1;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+/* Gaya kotak bayangan dan animasi halus */
+.modal-dialog {
+    transition: all 0.3s ease-in-out;
+    margin: 30px auto;
+}
+
+/* Responsif untuk tampilan lebih kecil */
+@media (max-width: 576px) {
+    .modal-content {
+        padding: 0;
+    }
+    .modal-header {
+        padding: 15px;
+    }
+    .modal-body {
+        padding: 15px;
+        font-size: 1rem;
+    }
+    .modal-footer .btn {
+        padding: 10px 20px;
+        font-size: 1rem;
+    }
+}
+
     </style>
 </head>
 
@@ -333,9 +511,12 @@ td .btn {
         </button>
       </div>
       <div class="modal-body">
-        <p>Name : namamemberbaru</p>
-        <p>Email : memberru@example.com</p>
-        <button type="button" class="btn btn-danger">Logout</button>
+        <p>Name: contohnamamemberbaru</p>
+        <p>Email: namamemberru@example.com</p>
+        <form action="http://localhost:8000/logout" method="POST" id="logoutForm" style="display: inline;">
+            @csrf <!-- Token CSRF untuk keamanan -->
+            <button type="submit" class="btn btn-danger">Logout</button>
+        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -343,6 +524,7 @@ td .btn {
     </div>
   </div>
 </div>
+
 
        <!-- Main Sidebar Container -->
        <aside class="main-sidebar sidebar-dark-primary elevation-4">

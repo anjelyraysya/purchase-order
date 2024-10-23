@@ -391,9 +391,12 @@
         </button>
       </div>
       <div class="modal-body">
-        <p>Name : contohnamamemberbaru</p>
-        <p>Email : namamemberru@example.com</p>
-        <button type="button" class="btn btn-danger">Logout</button>
+        <p>Name: contohnamamemberbaru</p>
+        <p>Email: namamemberru@example.com</p>
+        <form action="http://localhost:8000/logout" method="POST" id="logoutForm" style="display: inline;">
+            @csrf <!-- Token CSRF untuk keamanan -->
+            <button type="submit" class="btn btn-danger">Logout</button>
+        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
