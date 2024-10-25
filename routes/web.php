@@ -9,6 +9,7 @@ use App\Http\Controllers\PurchaseOrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\ReviewController;
 
 // Rute untuk halaman utama
 Route::get('/', function () {
@@ -91,5 +92,9 @@ Route::post('/logout', [LogoutController::class, 'logout'])->name('logout.perfor
 
 // Route untuk proses logout
 Route::post('/logout', [App\Http\Controllers\Auth\LogoutController::class, 'logout'])->name('logout');
+
+// Mendefinisikan resource route untuk ReviewController
+Route::resource('reviews', ReviewController::class);
+
 
 ?>

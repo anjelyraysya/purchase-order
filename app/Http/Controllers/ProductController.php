@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use App\Models\Product;
+use App\Models\Review;
 
 class ProductController extends Controller
 {
     // Menampilkan semua produk
     public function index()
     {
-        $products = Product::all();
+        $products = Product::with('reviews')->get(); // Menampilkan produk dengan review terkait
         return view('products.index', compact('products'));
     }
 
@@ -104,6 +105,30 @@ class ProductController extends Controller
         } else {
             return redirect()->route('products.index')->with('error', 'Failed to fetch products from API.');
         }
+    }
+
+    // Menampilkan form untuk menambahkan review ke produk
+    public function createReview($productId)
+    {
+        $product = Product::findOrFail($productId);
+        return view('reviews.create', compact('product'));
+    }
+
+    // Menyimpan review
+    public function storeReview(Request $request, $productId)
+    {
+        $request->validate([
+            'rating' => 'required|integer|min:1|max:5',
+            'comment' => 'required|string',
+            'reviewer_name' => 'required|string|max:255',
+            'reviewer_email' => 'required|email|max:255',
+        ]);
+
+        $review = new Review($request->all());
+        $review->product_id = $productId; // Set ID produk untuk relasi
+        $review->save();
+
+        return redirect()->route('products.index')->with('success', 'Review added successfully.');
     }
 }
 ?>

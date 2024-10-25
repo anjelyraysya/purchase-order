@@ -155,7 +155,7 @@
 
 /* Ensure that the content wrapper takes full width */
 .content-wrapper {
-    width: 200%; /* Allow it to expand to full width */
+    width: 220%; /* Allow it to expand to full width */
     padding: 0; /* Remove padding to use the full width of the screen */
 }
 
@@ -186,7 +186,7 @@
 
 /* Full-width navbar */
 .main-header.navbar {
-    width: 200%; /* Full width for the navbar */
+    width: 220%; /* Full width for the navbar */
     padding: 0 15px; /* Optional: Add horizontal padding if desired */
 }
 
@@ -1004,6 +1004,7 @@ td .btn {
                                       <th>Diperbarui Pada</th>
                                       <th>Barcode</th>
                                       <th>Kode QR</th>
+                                      <th>Reviews</th>
                                       <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -1013,7 +1014,6 @@ td .btn {
                                 </table>
 
 
- 
 
 
 <!-- Add Product Modal -->
@@ -1021,11 +1021,11 @@ td .btn {
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-            <h5 class="modal-title" id="addProductModalLabel">
-            <i class="bi bi-plus-circle"></i> <!-- Ikon Plus -->
-            <i class="bi bi-box-seam"></i> <!-- Ikon Box atau produk -->
-            Tambah Produk
-            </h5>
+                <h5 class="modal-title" id="addProductModalLabel">
+                    <i class="bi bi-plus-circle"></i> <!-- Ikon Plus -->
+                    <i class="bi bi-box-seam"></i> <!-- Ikon Box atau produk -->
+                    Tambah Produk
+                </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -1033,6 +1033,7 @@ td .btn {
             <div class="modal-body">
                 <!-- Form for adding new product -->
                 <form id="addProductForm">
+                    <!-- Existing product fields -->
                     <div class="form-group">
                         <label for="productTitle">Judul</label>
                         <input type="text" class="form-control" id="productTitle" required>
@@ -1125,20 +1126,42 @@ td .btn {
                         <label for="qrImage">Gambar untuk QR Code</label>
                         <input type="file" class="form-control" id="qrImage">
                     </div>
+
+                    <!-- Reviews Section -->
+                    <h6 class="mt-4">Review Produk</h6>
+                    <div class="form-group">
+                        <label for="reviewRating">Rating Reviewer</label>
+                        <input type="number" class="form-control" id="reviewRating" min="1" max="5">
+                    </div>
+                    <div class="form-group">
+                        <label for="reviewComment">Komentar</label>
+                        <textarea class="form-control" id="reviewComment" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="reviewDate">Tanggal</label>
+                        <input type="date" class="form-control" id="reviewDate">
+                    </div>
+                    <div class="form-group">
+                        <label for="reviewerName">Nama Reviewer</label>
+                        <input type="text" class="form-control" id="reviewerName">
+                    </div>
+                    <div class="form-group">
+                        <label for="reviewerEmail">Email Reviewer</label>
+                        <input type="email" class="form-control" id="reviewerEmail">
+                    </div>
                 </form>
             </div>
             <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">
-            <i class="bi bi-x-circle"></i> Close
-            </button>
-            <button type="submit" class="btn btn-primary" form="addProductForm">
-            <i class="bi bi-save"></i> Simpan Produk
-            </button>
-        </div>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                    <i class="bi bi-x-circle"></i> Close
+                </button>
+                <button type="submit" class="btn btn-primary" form="addProductForm">
+                    <i class="bi bi-save"></i> Simpan Produk
+                </button>
+            </div>
         </div>
     </div>
 </div>
- 
 
 
 
@@ -1218,43 +1241,56 @@ const productDimensions = [
         const qrCodeImageUrl = product.qrCode || `https://api.qrserver.com/v1/create-qr-code/?data=${product.id}&size=100x100`;
 
         tableBody.append(`
-            <tr data-id="${product.id}">
-                <td>${product.id || 'Tidak Ada ID'}</td>
-                <td>${product.title || 'Tidak Ada Judul'}</td>
-                <td>${product.description || 'Tidak Ada Deskripsi'}</td>
-                <td>${product.category || 'Tidak Ada Kategori'}</td>
-                <td>${product.price !== undefined ? product.price : 'Tidak Ada Harga'}</td>
-                <td>${product.discountPercentage !== undefined ? product.discountPercentage : 'Tidak Ada Diskon'}</td>
-                <td>${product.rating !== undefined ? product.rating : 'Tidak Ada Rating'}</td>
-                <td>${product.stock !== undefined ? product.stock : 'Tidak Ada Info Stok'}</td>
-                <td><img src="${product.thumbnail || 'https://via.placeholder.com/50'}" alt="${product.title || 'Tidak Ada Gambar'}" style="width: 50px; height: auto;"></td>
-                <td>${product.tags ? product.tags.join(", ") : 'Tidak Ada Tag'}</td>
-                <td>${product.sku || 'Tidak Ada SKU'}</td>
-                <td>${product.weight || 'Tidak Ada Berat'}</td>
-                <td>${product.width || 'Tidak Ada Lebar'}</td>
-                <td>${product.height || 'Tidak Ada Tinggi'}</td>
-                <td>${product.depth || 'Tidak Ada Kedalaman'}</td>
-                <td>${product.warrantyInformation || 'Tidak Ada Info Garansi'}</td>
-                <td>${product.shippingInformation || 'Tidak Ada Info Pengiriman'}</td>
-                <td>${product.availabilityStatus || 'Tidak Ada Info Ketersediaan'}</td>
-                <td>${product.returnPolicy || 'Tidak Ada Kebijakan Pengembalian'}</td>
-                <td>${product.minimumOrderQuantity || 'Tidak Ada Kuota Minimum'}</td>
-                <td>${product.createdAt || 'Tidak Ada Tanggal Pembuatan'}</td>
-                <td>${product.updatedAt || 'Tidak Ada Tanggal Pembaruan'}</td>
-                <td>${product.barcode || 'No Barcode'}</td>
-                <td><img src="${qrCodeImageUrl}" alt="QR Code" style="width: 100px; height: auto;"></td>
-                <!-- Dalam tabel produk -->
-                <td>
-                <!-- Tombol Edit dengan ikon pensil -->
-                <button class="btn btn-warning btn-sm edit-product equal-btn" data-id="${product.id}">
+    <tr data-id="${product.id}">
+        <td>${product.id || 'Tidak Ada ID'}</td>
+        <td>${product.title || 'Tidak Ada Judul'}</td>
+        <td>${product.description || 'Tidak Ada Deskripsi'}</td>
+        <td>${product.category || 'Tidak Ada Kategori'}</td>
+        <td>${product.price !== undefined ? product.price : 'Tidak Ada Harga'}</td>
+        <td>${product.discountPercentage !== undefined ? product.discountPercentage : 'Tidak Ada Diskon'}</td>
+        <td>${product.rating !== undefined ? product.rating : 'Tidak Ada Rating'}</td>
+        <td>${product.stock !== undefined ? product.stock : 'Tidak Ada Info Stok'}</td>
+        <td><img src="${product.thumbnail || 'https://via.placeholder.com/50'}" alt="${product.title || 'Tidak Ada Gambar'}" style="width: 50px; height: auto;"></td>
+        <td>${product.tags ? product.tags.join(", ") : 'Tidak Ada Tag'}</td>
+        <td>${product.sku || 'Tidak Ada SKU'}</td>
+        <td>${product.weight || 'Tidak Ada Berat'}</td>
+        <td>${product.width || 'Tidak Ada Lebar'}</td>
+        <td>${product.height || 'Tidak Ada Tinggi'}</td>
+        <td>${product.depth || 'Tidak Ada Kedalaman'}</td>
+        <td>${product.warrantyInformation || 'Tidak Ada Info Garansi'}</td>
+        <td>${product.shippingInformation || 'Tidak Ada Info Pengiriman'}</td>
+        <td>${product.availabilityStatus || 'Tidak Ada Info Ketersediaan'}</td>
+        <td>${product.returnPolicy || 'Tidak Ada Kebijakan Pengembalian'}</td>
+        <td>${product.minimumOrderQuantity || 'Tidak Ada Kuota Minimum'}</td>
+        <td>${product.createdAt || 'Tidak Ada Tanggal Pembuatan'}</td>
+        <td>${product.updatedAt || 'Tidak Ada Tanggal Pembaruan'}</td>
+        <td>${product.barcode || 'No Barcode'}</td>
+        <td><img src="${qrCodeImageUrl}" alt="QR Code" style="width: 100px; height: auto;"></td>
+        <!-- Kolom untuk Reviews -->
+        <td>
+            ${product.reviews && product.reviews.length > 0 ? product.reviews.map(review => `
+                <div class="review-item">
+                    <strong>Rating:</strong> ${review.rating || 'Tidak Ada Rating'}<br>
+                    <strong>Komentar:</strong> ${review.comment || 'Tidak Ada Komentar'}<br>
+                    <strong>Tanggal:</strong> ${review.date || 'Tidak Ada Tanggal'}<br>
+                    <strong>Nama Reviewer:</strong> ${review.reviewerName || 'Tidak Ada Nama'}<br>
+                    <strong>Email Reviewer:</strong> ${review.reviewerEmail || 'Tidak Ada Email'}<br>
+                    <hr>
+                </div>
+            `).join('') : 'Tidak Ada Ulasan'}
+        </td>
+        <!-- Kolom untuk Aksi -->
+        <td>
+            <button class="btn btn-warning btn-sm edit-product equal-btn" data-id="${product.id}">
                 <i class="fas fa-edit"></i> Edit
-                </button>
-                <button class="btn btn-danger btn-sm delete-product equal-btn" data-id="${product.id}">
+            </button>
+            <button class="btn btn-danger btn-sm delete-product equal-btn" data-id="${product.id}">
                 <i class="fas fa-trash-alt"></i> Hapus
-                </button>
+            </button>
+        </td>
+    </tr>
+`);
 
-            </tr>
-        `);
     });
 }
 
@@ -1545,7 +1581,6 @@ function previewQrCodeImage(event) {
 
 
 
-
 // Event listener untuk tombol edit
 $(document).on('click', '.edit-product', function() {
     const productId = $(this).data('id');
@@ -1602,6 +1637,13 @@ document.getElementById("addProductForm").addEventListener("submit", function(ev
     let productUpdatedAt = document.getElementById("productUpdatedAt").value;
     let productBarcode = document.getElementById("productBarcode").value;
 
+    // Ambil data review dari form
+    let reviewRating = document.getElementById("reviewRating").value;
+    let reviewComment = document.getElementById("reviewComment").value;
+    let reviewDate = document.getElementById("reviewDate").value;
+    let reviewerName = document.getElementById("reviewerName").value;
+    let reviewerEmail = document.getElementById("reviewerEmail").value;
+
     // QR code generation dummy (Replace this with actual QR code generation if needed)
     let productQRCode = "GeneratedQRCode";
 
@@ -1640,6 +1682,14 @@ document.getElementById("addProductForm").addEventListener("submit", function(ev
         <td>${productBarcode}</td>
         <td><img src="${URL.createObjectURL(productImage)}" alt="QR Code" class="qr-code" width="50"></td>
         <td>
+            <strong>Review:</strong>
+            <p>Rating: ${reviewRating}</p>
+            <p>Komentar: ${reviewComment}</p>
+            <p>Tanggal: ${reviewDate}</p>
+            <p>Nama: ${reviewerName}</p>
+            <p>Email: ${reviewerEmail}</p>
+        </td>
+        <td>
             <button class="btn btn-warning btn-sm edit-product" data-id="${productIdCounter}">
                 <i class="fas fa-edit"></i> Edit
             </button>
@@ -1662,6 +1712,10 @@ document.getElementById("addProductForm").addEventListener("submit", function(ev
     document.getElementById("addProductForm").reset();
     $('#addProductModal').modal('hide');
 });
+
+
+
+
 
 // Fungsi untuk menghapus baris produk
 function deleteProduct(button) {
@@ -1778,40 +1832,36 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.style.transition = 'transform 0.3s';
     });
 
+    
+
     // Profile Modal (Logout)
-    const profileBtn = document.getElementById('profileBtn');
-    const profileModal = new bootstrap.Modal(document.getElementById('profileModal'));
+const profileBtn = document.getElementById('profileBtn');
+const profileModal = new bootstrap.Modal(document.getElementById('profileModal'));
 
-    profileBtn.addEventListener('click', function() {
-        profileModal.show();
-        // Tambahkan animasi ketika modal muncul
-        document.getElementById('profileModal').classList.add('animate__animated', 'animate__fadeInUp');
-    });
+profileBtn.addEventListener('click', function() {
+    profileModal.show();
+    // Hapus animasi ketika modal muncul
+    // document.getElementById('profileModal').classList.add('animate__animated', 'animate__fadeInUp'); // Dihapus
+});
 
-    // Logout Button
-    const logoutBtn = document.querySelector('.btn-danger');
-    logoutBtn.addEventListener('click', function() {
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "You will be logged out.",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#11468F',
-            cancelButtonColor: '#B8001F',
-            confirmButtonText: 'Yes, log me out!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire(
-                    'Logged Out!',
-                    'You have successfully logged out.',
-                    'success'
-                ).then(() => {
-                    // Redirect ke halaman logout
-                    window.location.href = '/logout';
-                });
-            }
-        });
+// Logout Button
+const logoutBtn = document.querySelector('.btn-danger');
+logoutBtn.addEventListener('click', function() {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You will be logged out.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#11468F',
+        cancelButtonColor: '#B8001F',
+        confirmButtonText: 'Yes, log me out!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Redirect ke URL http://localhost:8000/logout tanpa timer
+            window.location.href = 'http://localhost:8000/logout';
+        }
     });
+});
 });
 
 
@@ -1945,6 +1995,9 @@ style.innerHTML = `
 }
 `;
 document.head.appendChild(style);
+
+
+
 
 
 </script>

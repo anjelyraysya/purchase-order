@@ -10,8 +10,8 @@ class Product extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title',                     
-        'description',               
+        'title',                      
+        'description',                
         'category',                  
         'price',                     
         'discount',                  
@@ -31,6 +31,13 @@ class Product extends Model
         'minimum_order_quantity',    
         'barcode',                   
         'qr_code',                   
+        'average_rating', // Menambahkan kolom untuk menyimpan rata-rata rating
     ];
+
+    // Relasi dengan model Review
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
 }
 ?>

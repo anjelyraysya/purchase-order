@@ -31,6 +31,11 @@ class CreateProductsTable extends Migration
             $table->integer('minimum_order_quantity')->nullable(); // Kuota pesanan minimum
             $table->string('barcode')->nullable(); // Barcode produk
             $table->string('qr_code')->nullable(); // Kode QR produk
+
+            // Kolom baru untuk menyimpan informasi review
+            $table->integer('review_count')->default(0); // Jumlah review
+            $table->decimal('average_rating', 3, 2)->nullable(); // Rata-rata rating
+            
             $table->timestamps(); // created_at dan updated_at
         });
     }
