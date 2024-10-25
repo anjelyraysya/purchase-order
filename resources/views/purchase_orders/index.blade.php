@@ -384,6 +384,19 @@ td .btn {
     }
 }
 
+
+
+
+#searchPurchaseOrder {
+    border: 2px solid #007bff; /* Blue border */
+    border-radius: 4px; /* Slightly rounded corners */
+}
+
+#searchPurchaseOrder:focus {
+    border-color: #0056b3; /* Darker blue on focus */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Subtle glow effect */
+}
+
     </style>
 </head>
 
@@ -642,65 +655,70 @@ td .btn {
             </div>
         </aside>
 
-        <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
-            <div class="content-header">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <h1 class="m-0">Daftar Purchase Orders</h1>
+       <!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">Daftar Purchase Orders</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Purchase Orders</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-12 d-flex justify-content-between align-items-center">
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#addPurchaseOrderModal">
+                        <i class="fas fa-plus"></i> Tambah Purchase Order
+                    </button>
+                    <div class="ml-2 d-flex align-items-center">
+                        <label for="searchPurchaseOrder" class="mr-2 mb-0">Search:</label>
+                        <input type="text" id="searchPurchaseOrder" placeholder="Search..." class="form-control" style="width: 250px; height: 38px;">
+                        <button id="searchButton" class="btn btn-info ml-2">Cari</button> <!-- Search button -->
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Daftar Purchase Orders</h3>
                         </div>
-                        <div class="col-sm-6">
-                            <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Purchase Orders</li>
-                            </ol>
+                        <div class="card-body">
+                            <table class="table table-bordered" id="purchaseOrderTable">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Nama Pembelian</th>
+                                        <th>Jumlah Pembelian</th>
+                                        <th>Tanggal</th>
+                                        <th>Material ID</th>
+                                        <th>Supplier ID</th>
+                                        <th>Deskripsi</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Baris purchase order akan ditambahkan di sini -->
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <!-- Main content -->
-            <section class="content">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-                    <div class="col-sm-12">
-                    <button class="btn btn-primary" data-toggle="modal" data-target="#addPurchaseOrderModal">
-                    <i class="fas fa-plus"></i> Tambah Purchase Order
-                 </button>
-                </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h3 class="card-title">Daftar Purchase Orders</h3>
-                                </div>
-                                <div class="card-body">
-                                    <table class="table table-bordered" id="purchaseOrderTable">
-                                        <thead>
-                                            <tr>
-                                                <th>ID</th>
-                                                <th>Nama Pembelian</th>
-                                                <th>Jumlah Pembelian</th>
-                                                <th>Tanggal</th>
-                                                <th>Material ID</th>
-                                                <th>Supplier ID</th>
-                                                <th>Deskripsi</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <!-- Baris purchase order akan ditambahkan di sini -->
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
         </div>
+    </section>
+</div>
 
         <!-- Footer -->
         <footer class="main-footer">
@@ -874,17 +892,18 @@ td .btn {
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/js/adminlte.min.js"></script>
 <script>
-$(document).ready(function () {
-    // Data awal untuk daftar Purchase Order
-    let purchaseOrders = [
-        { id: 1, purchaseName: 'Pembelian Semen Putih', quantity: 100, date: '2024-10-01', materialId: 1, supplierId: 3, description: 'Pembelian semen putih dari Mandiri Solutions.' },
-        { id: 2, purchaseName: 'Pembelian Besi Beton', quantity: 200, date: '2024-10-02', materialId: 2, supplierId: 1, description: 'Pembelian besi beton dari Gemilang Supply Co.' },
-        { id: 3, purchaseName: 'Pembelian Kayu Jati', quantity: 50, date: '2024-10-03', materialId: 3, supplierId: 4, description: 'Pembelian kayu jati dari Bersama Logistics.' },
-        { id: 4, purchaseName: 'Pembelian Papan Gypsum', quantity: 150, date: '2024-10-04', materialId: 4, supplierId: 2, description: 'Pembelian papan gypsum dari Sukses Global Resources.' },
-        { id: 5, purchaseName: 'Pembelian Batu Bata Merah', quantity: 300, date: '2024-10-05', materialId: 5, supplierId: 5, description: 'Pembelian batu bata merah dari Sejahtera Prime.' }
-    ];
 
-    // Fungsi untuk menampilkan daftar Purchase Order
+
+$(document).ready(function () {
+    // Inisialisasi purchase orders dari localStorage
+    let purchaseOrders = JSON.parse(localStorage.getItem('purchaseOrders')) || [];
+
+    // Function to save purchase orders to localStorage
+    function savePurchaseOrders() {
+        localStorage.setItem('purchaseOrders', JSON.stringify(purchaseOrders));
+    }
+
+    // Function to display the purchase orders in the table
     function renderPurchaseOrders() {
         const orderTableBody = $('#purchaseOrderTable tbody');
         orderTableBody.empty();
@@ -911,13 +930,13 @@ $(document).ready(function () {
         });
     }
 
-    // Tampilkan Purchase Orders saat halaman dimuat
+    // Display purchase orders when the page loads
     renderPurchaseOrders();
 
-    // Simpan Purchase Order
+    // Save new purchase order
     $('#saveOrderButton').click(function () {
         const newOrder = {
-            id: purchaseOrders.length + 1,
+            id: purchaseOrders.length ? purchaseOrders[purchaseOrders.length - 1].id + 1 : 1,
             purchaseName: $('#orderName').val(),
             quantity: $('#orderQuantity').val(),
             date: $('#orderDate').val(),
@@ -926,12 +945,22 @@ $(document).ready(function () {
             description: $('#orderDescription').val()
         };
         purchaseOrders.push(newOrder);
+        savePurchaseOrders(); // Save to localStorage
         renderPurchaseOrders();
         $('#addPurchaseOrderModal').modal('hide');
+
+        // Clear the input fields
+        $('#orderName').val('');
+        $('#orderQuantity').val('');
+        $('#orderDate').val('');
+        $('#materialId').val('');
+        $('#supplierId').val('');
+        $('#orderDescription').val('');
+
         $('#successToast').toast('show');
     });
 
-    // Edit Purchase Order
+    // Edit purchase order
     $(document).on('click', '.edit-order', function () {
         const orderId = $(this).data('id');
         const order = purchaseOrders.find(o => o.id === orderId);
@@ -942,10 +971,10 @@ $(document).ready(function () {
         $('#editSupplierId').val(order.supplierId);
         $('#editOrderDescription').val(order.description);
         $('#editPurchaseOrderModal').modal('show');
-        $('#updateOrderButton').data('id', orderId); // Simpan ID di button
+        $('#updateOrderButton').data('id', orderId); // Store ID in button
     });
 
-    // Update Purchase Order
+    // Update purchase order
     $('#updateOrderButton').click(function () {
         const orderId = $(this).data('id');
         const orderIndex = purchaseOrders.findIndex(o => o.id === orderId);
@@ -958,27 +987,32 @@ $(document).ready(function () {
             supplierId: $('#editSupplierId').val(),
             description: $('#editOrderDescription').val()
         };
+        savePurchaseOrders(); // Save to localStorage
         renderPurchaseOrders();
         $('#editPurchaseOrderModal').modal('hide');
         $('#editToast').toast('show');
     });
 
-    // Hapus Purchase Order
+    // Delete purchase order
     $(document).on('click', '.delete-order', function () {
         const orderId = $(this).data('id');
         $('#confirmDeleteModal').modal('show');
         $('#confirmDeleteButton').data('id', orderId);
     });
 
-    // Konfirmasi Hapus
+    // Confirm delete
     $('#confirmDeleteButton').click(function () {
         const orderId = $(this).data('id');
         purchaseOrders = purchaseOrders.filter(o => o.id !== orderId);
+        savePurchaseOrders(); // Save to localStorage
         renderPurchaseOrders();
         $('#confirmDeleteModal').modal('hide');
         $('#deleteToast').toast('show');
     });
 });
+
+
+
 
 
 
@@ -1211,5 +1245,38 @@ style.innerHTML = `
 `;
 document.head.appendChild(style);
 
+
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('searchPurchaseOrder');
+    const searchButton = document.getElementById('searchButton');
+    const purchaseOrderTable = document.getElementById('purchaseOrderTable');
+    const tableBody = purchaseOrderTable.getElementsByTagName('tbody')[0];
+
+    // Function to search through the table rows
+    function searchTable() {
+        const searchTerm = searchInput.value.toLowerCase();
+        const tableRows = tableBody.getElementsByTagName('tr');
+
+        // Loop through all table rows and toggle visibility based on search term
+        for (let i = 0; i < tableRows.length; i++) {
+            const row = tableRows[i];
+            const rowData = row.innerText.toLowerCase();
+            if (rowData.includes(searchTerm)) {
+                row.style.display = ''; // Show the row if it matches the search term
+            } else {
+                row.style.display = 'none'; // Hide the row if it does not match
+            }
+        }
+    }
+
+    // Add event listener for input to search as the user types
+    searchInput.addEventListener('input', searchTable);
+
+    // Add event listener for button click to trigger the search
+    searchButton.addEventListener('click', searchTable);
+});
 
 </script>

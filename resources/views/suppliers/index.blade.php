@@ -316,6 +316,20 @@
 }
 
 
+
+
+#searchSupplier {
+    border: 2px solid #007bff; /* Bootstrap primary color */
+    border-radius: 5px; /* Optional: rounded corners */
+    height: 38px; /* Keep the height uniform */
+    transition: border-color 0.3s; /* Smooth transition for border color */
+}
+
+#searchSupplier:focus {
+    border-color: #0056b3; /* Darker blue when focused */
+    outline: none; /* Remove default outline */
+}
+
     </style>
 </head>
 
@@ -575,63 +589,67 @@
 </aside>
 
         <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
-            <div class="content-header">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <h1 class="m-0">Daftar Pemasok</h1>
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">Daftar Pemasok</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Suppliers</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-12 d-flex justify-content-between align-items-center">
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#addSupplierModal">
+                        <i class="fas fa-plus"></i> Tambah Pemasok
+                    </button>
+                    <div class="ml-2 d-flex align-items-center">
+                        <label for="searchSupplier" class="mr-2 mb-0">Search:</label>
+                        <input type="text" id="searchSupplier" placeholder="Search..." class="form-control" style="width: 250px; height: 38px;">
+                        <button id="searchButton" class="btn btn-info ml-2">Cari</button> <!-- Search button -->
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Daftar Pemasok</h3>
                         </div>
-                        <div class="col-sm-6">
-                            <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Suppliers</li>
-                            </ol>
+                        <div class="card-body">
+                            <table class="table table-bordered" id="supplierTable">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Nama Pemasok</th>
+                                        <th>Alamat</th>
+                                        <th>Email</th>
+                                        <th>Nomor Telepon</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Rows will be dynamically added here -->
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <!-- Main content -->
-            <section class="content">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-                    <div class="col-sm-12">
-                <button class="btn btn-primary" data-toggle="modal" data-target="#addSupplierModal">
-                   <i class="fas fa-plus"></i> Tambah Pemasok
-                </button>
-                </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h3 class="card-title">Daftar Pemasok</h3>
-                                </div>
-                                <div class="card-body">
-                                    <table class="table table-bordered" id="supplierTable">
-                                        <thead>
-                                            <tr>
-                                                <th>ID</th>
-                                                <th>Nama Pemasok</th>
-                                                <th>Alamat</th>
-                                                <th>Email</th>
-                                                <th>Nomor Telepon</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <!-- Baris pemasok akan ditambahkan di sini -->
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
         </div>
-
+    </section>
+</div>
         <!-- Footer -->
         <footer class="main-footer">
             <strong>&copy; <span id="currentYear"></span> Anjely Raysya.</strong> Semua hak dilindungi.
@@ -793,102 +811,113 @@
     <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/js/adminlte.min.js"></script>
 
     <script>
-    $(document).ready(function () {
-        let suppliers = [
-            { id: 1, name: 'Mandiri Solutions', address: 'Jalan Kemenangan No. 8, Bandung', email: 'mandirisolutions@example.com', phone: '08567890124' },
-            { id: 2, name: 'Gemilang Supply Co', address: 'Jalan Senja Indah No. 3, Jakarta', email: 'gemilangsupply@example.com', phone: '08345678901' },
-            { id: 3, name: 'Bersama Logistics', address: 'Plaza Persatuan No. 9, Yogyakarta', email: 'bersamalogistics@example.com', phone: '08678901235' },
-            { id: 4, name: 'Sukses Global Resources', address: 'Boulevard Inovasi No. 4, Surabaya', email: 'suksesglobal@example.com', phone: '08456789012' },
-            { id: 5, name: 'Sejahtera Prime', address: 'Kawasan Emas No. 10, Semarang', email: 'sejahteraprime@example.com', phone: '08789012346' }
-        ];
+  $(document).ready(function () {
+    // Initialize suppliers array as an empty array if no data exists in localStorage
+    let suppliers = JSON.parse(localStorage.getItem('suppliers')) || [];
 
-        function renderSupplierTable() {
-            const tbody = $('#supplierTable tbody');
-            tbody.empty();
-            suppliers.forEach(supplier => {
-                tbody.append(`
-                    <tr>
-                        <td>${supplier.id}</td>
-                        <td>${supplier.name}</td>
-                        <td>${supplier.address}</td>
-                        <td>${supplier.email}</td>
-                        <td>${supplier.phone}</td>
-                        <td>
-                            <button class="btn btn-warning btn-sm edit-supplier-button" data-id="${supplier.id}">
-                                <i class="fas fa-edit"></i> Edit
-                            </button>
-                            <button class="btn btn-danger btn-sm delete-supplier-button" data-id="${supplier.id}">
-                                <i class="fas fa-trash-alt"></i> Hapus
-                            </button>
-                        </td>
-                    </tr>
-                `);
-            });
-        }
+    function saveSuppliersToLocalStorage() {
+        localStorage.setItem('suppliers', JSON.stringify(suppliers));
+    }
 
-        function showToast(toastId) {
-            $(toastId).toast('show');
-        }
-
-        $('#saveSupplierButton').on('click', function () {
-            const name = $('#supplierName').val();
-            const address = $('#supplierAddress').val();
-            const email = $('#supplierEmail').val();
-            const phone = $('#supplierPhone').val();
-            const id = suppliers.length ? suppliers[suppliers.length - 1].id + 1 : 1;
-
-            suppliers.push({ id, name, address, email, phone });
-            renderSupplierTable();
-            $('#addSupplierModal').modal('hide');
-            showToast('#supplierSuccessToast');
+    function renderSupplierTable() {
+        const tbody = $('#supplierTable tbody');
+        tbody.empty();
+        suppliers.forEach(supplier => {
+            tbody.append(`
+                <tr>
+                    <td>${supplier.id}</td>
+                    <td>${supplier.name}</td>
+                    <td>${supplier.address}</td>
+                    <td>${supplier.email}</td>
+                    <td>${supplier.phone}</td>
+                    <td>
+                        <button class="btn btn-warning btn-sm edit-supplier-button" data-id="${supplier.id}">
+                            <i class="fas fa-edit"></i> Edit
+                        </button>
+                        <button class="btn btn-danger btn-sm delete-supplier-button" data-id="${supplier.id}">
+                            <i class="fas fa-trash-alt"></i> Hapus
+                        </button>
+                    </td>
+                </tr>
+            `);
         });
+    }
 
-        $(document).on('click', '.edit-supplier-button', function () {
-            const supplierId = $(this).data('id');
-            const supplier = suppliers.find(s => s.id === supplierId);
+    function showToast(toastId) {
+        $(toastId).toast('show');
+    }
 
-            $('#editSupplierName').val(supplier.name);
-            $('#editSupplierAddress').val(supplier.address);
-            $('#editSupplierEmail').val(supplier.email);
-            $('#editSupplierPhone').val(supplier.phone);
-            $('#updateSupplierButton').data('id', supplierId);
-            $('#editSupplierModal').modal('show');
-        });
+    $('#saveSupplierButton').on('click', function () {
+        const name = $('#supplierName').val();
+        const address = $('#supplierAddress').val();
+        const email = $('#supplierEmail').val();
+        const phone = $('#supplierPhone').val();
+        const id = suppliers.length ? suppliers[suppliers.length - 1].id + 1 : 1;
 
-        $('#updateSupplierButton').on('click', function () {
-            const supplierId = $(this).data('id');
-            const name = $('#editSupplierName').val();
-            const address = $('#editSupplierAddress').val();
-            const email = $('#editSupplierEmail').val();
-            const phone = $('#editSupplierPhone').val();
-
-            const supplier = suppliers.find(s => s.id === supplierId);
-            supplier.name = name;
-            supplier.address = address;
-            supplier.email = email;
-            supplier.phone = phone;
-
-            renderSupplierTable();
-            $('#editSupplierModal').modal('hide');
-            showToast('#supplierEditToast');
-        });
-
-        $(document).on('click', '.delete-supplier-button', function () {
-            const supplierId = $(this).data('id');
-            $('#confirmDeleteSupplierButton').data('id', supplierId);
-            $('#confirmDeleteSupplierModal').modal('show');
-        });
-
-        $('#confirmDeleteSupplierButton').on('click', function () {
-            const supplierId = $(this).data('id');
-            suppliers = suppliers.filter(s => s.id !== supplierId);
-            renderSupplierTable();
-            $('#confirmDeleteSupplierModal').modal('hide');
-            showToast('#supplierDeleteToast');
-        });
-
+        suppliers.push({ id, name, address, email, phone });
+        saveSuppliersToLocalStorage();
         renderSupplierTable();
+        
+        // Clear the form fields
+        $('#supplierName').val('');
+        $('#supplierAddress').val('');
+        $('#supplierEmail').val('');
+        $('#supplierPhone').val('');
+        
+        $('#addSupplierModal').modal('hide');
+        showToast('#supplierSuccessToast');
     });
+
+    $(document).on('click', '.edit-supplier-button', function () {
+        const supplierId = $(this).data('id');
+        const supplier = suppliers.find(s => s.id === supplierId);
+
+        $('#editSupplierName').val(supplier.name);
+        $('#editSupplierAddress').val(supplier.address);
+        $('#editSupplierEmail').val(supplier.email);
+        $('#editSupplierPhone').val(supplier.phone);
+        $('#updateSupplierButton').data('id', supplierId);
+        $('#editSupplierModal').modal('show');
+    });
+
+    $('#updateSupplierButton').on('click', function () {
+        const supplierId = $(this).data('id');
+        const name = $('#editSupplierName').val();
+        const address = $('#editSupplierAddress').val();
+        const email = $('#editSupplierEmail').val();
+        const phone = $('#editSupplierPhone').val();
+
+        const supplier = suppliers.find(s => s.id === supplierId);
+        supplier.name = name;
+        supplier.address = address;
+        supplier.email = email;
+        supplier.phone = phone;
+
+        saveSuppliersToLocalStorage();
+        renderSupplierTable();
+        $('#editSupplierModal').modal('hide');
+        showToast('#supplierEditToast');
+    });
+
+    $(document).on('click', '.delete-supplier-button', function () {
+        const supplierId = $(this).data('id');
+        $('#confirmDeleteSupplierButton').data('id', supplierId);
+        $('#confirmDeleteSupplierModal').modal('show');
+    });
+
+    $('#confirmDeleteSupplierButton').on('click', function () {
+        const supplierId = $(this).data('id');
+        suppliers = suppliers.filter(s => s.id !== supplierId);
+        saveSuppliersToLocalStorage();
+        renderSupplierTable();
+        $('#confirmDeleteSupplierModal').modal('hide');
+        showToast('#supplierDeleteToast');
+    });
+
+    // Render the supplier table when the page loads
+    renderSupplierTable();
+});
+
 
 
 
@@ -1118,6 +1147,32 @@ style.innerHTML = `
 `;
 document.head.appendChild(style);
 
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+        const searchInput = document.getElementById('searchSupplier');
+        const supplierTable = document.getElementById('supplierTable');
+        const tableRows = supplierTable.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+
+        // Function to search through the table rows
+        function searchTable() {
+            const searchTerm = searchInput.value.toLowerCase();
+
+            for (let i = 0; i < tableRows.length; i++) {
+                const row = tableRows[i];
+                const rowData = row.innerText.toLowerCase();
+                if (rowData.includes(searchTerm)) {
+                    row.style.display = ''; // Show the row
+                } else {
+                    row.style.display = 'none'; // Hide the row
+                }
+            }
+        }
+
+        // Add event listener for the search input
+        searchInput.addEventListener('input', searchTable);
+    });
 </script>
 
     </body>

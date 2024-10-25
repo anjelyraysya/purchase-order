@@ -316,6 +316,20 @@
 }
 
 
+
+
+#searchUser {
+    border: 2px solid #007bff; /* Bootstrap primary color */
+    border-radius: 5px; /* Optional: rounded corners */
+    height: 38px; /* Keep the height uniform */
+    transition: border-color 0.3s; /* Smooth transition for border color */
+}
+
+#searchUser:focus {
+    border-color: #0056b3; /* Darker blue when focused */
+    outline: none; /* Remove default outline */
+}
+
     </style>
 </head>
 <body class="hold-transition sidebar-mini">
@@ -575,62 +589,68 @@
 
 
         <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
-            <div class="content-header">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <h1 class="m-0">Daftar Pengguna</h1>
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">Daftar Pengguna</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Users</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-12 d-flex justify-content-between align-items-center">
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#addUserModal">
+                        <i class="fas fa-plus"></i> Tambah Pengguna
+                    </button>
+                    <div class="d-flex align-items-center ml-2">
+                        <label for="searchUser" class="mr-2 mb-0">Search:</label>
+                        <input type="text" id="searchUser" placeholder="Search..." class="form-control" style="width: 250px; height: 38px;">
+                        <button id="searchButton" class="btn btn-info ml-2">Cari</button> <!-- Search button -->
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Daftar Pengguna</h3>
                         </div>
-                        <div class="col-sm-6">
-                            <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Users</li>
-                            </ol>
+                        <div class="card-body">
+                            <table class="table table-bordered" id="userTable">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Nama</th>
+                                        <th>Alamat</th>
+                                        <th>Email</th>
+                                        <th>Nomor Handphone</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Baris pengguna akan ditambahkan di sini -->
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <!-- Main content -->
-            <section class="content">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-                    <div class="col-sm-12">
-    <button class="btn btn-primary" data-toggle="modal" data-target="#addUserModal">
-        <i class="fas fa-plus"></i> Tambah Pengguna
-    </button>
-</div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h3 class="card-title">Daftar Pengguna</h3>
-                                </div>
-                                <div class="card-body">
-                                    <table class="table table-bordered" id="userTable">
-                                        <thead>
-                                            <tr>
-                                                <th>ID</th>
-                                                <th>Nama</th>
-                                                <th>Alamat</th>
-                                                <th>Email</th>
-                                                <th>Nomor Handphone</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <!-- Baris pengguna akan ditambahkan di sini -->
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
         </div>
+    </section>
+</div>
+
 
         <!-- Footer -->
         <footer class="main-footer">
@@ -791,14 +811,13 @@
     <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/js/adminlte.min.js"></script>
 
     <script>
-    $(document).ready(function () {
-    let users = [
-        { id: 1, name: 'Misbah Munir', address: 'Jalan Mawar No. 12, Jakarta', email: 'misbahmu@example.com', phone: '08123456789' },
-        { id: 2, name: 'Calla Hanum', address: 'Jalan Melati No. 28, Bandung', email: 'callalu@example.com', phone: '08234567890' },
-        { id: 3, name: 'Maudy Ayunda', address: 'Jalan Cemara No. 30, Depok', email: 'ayundama@example.com', phone: '08567890123' },
-        { id: 4, name: 'Prilly Latuconsina', address: 'Jalan Cempaka No. 60, Yogyakarta', email: 'prillylatu@example.com', phone: '08789012345' },
-        { id: 5, name: 'Najwa Shihab', address: 'Jalan Matahari No. 77, Surabaya', email: 'najwashihab@example.com', phone: '08890123456' }
-    ];
+   $(document).ready(function () {
+    // Clear initial user data and initialize with an empty array
+    let users = JSON.parse(localStorage.getItem('users')) || [];
+
+    function saveUsersToLocalStorage() {
+        localStorage.setItem('users', JSON.stringify(users));
+    }
 
     function renderUserTable() {
         const tbody = $('#userTable tbody');
@@ -828,6 +847,14 @@
         $(toastId).toast('show');
     }
 
+    // Clear the form fields when the "Add User" modal is shown
+    $('#addUserModal').on('show.bs.modal', function () {
+        $('#userName').val('');
+        $('#userAddress').val('');
+        $('#userEmail').val('');
+        $('#userPhone').val('');
+    });
+
     $('#saveUserButton').on('click', function () {
         const name = $('#userName').val();
         const address = $('#userAddress').val();
@@ -836,6 +863,7 @@
         const id = users.length ? users[users.length - 1].id + 1 : 1;
 
         users.push({ id, name, address, email, phone });
+        saveUsersToLocalStorage();
         renderUserTable();
         $('#addUserModal').modal('hide');
         showToast('#userSuccessToast');
@@ -866,6 +894,7 @@
         user.email = email;
         user.phone = phone;
 
+        saveUsersToLocalStorage();
         renderUserTable();
         $('#editUserModal').modal('hide');
         showToast('#userEditToast');
@@ -880,6 +909,7 @@
     $('#confirmDeleteUserButton').on('click', function () {
         const userId = $(this).data('id');
         users = users.filter(u => u.id !== userId);
+        saveUsersToLocalStorage();
         renderUserTable();
         $('#confirmDeleteUserModal').modal('hide');
         showToast('#userDeleteToast');
@@ -887,6 +917,7 @@
 
     renderUserTable();
 });
+
 
 
 
@@ -1111,6 +1142,32 @@ style.innerHTML = `
 }
 `;
 document.head.appendChild(style);
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('searchUser');
+    const userTable = document.getElementById('userTable');
+    const tableRows = userTable.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+
+    // Function to search through the table rows
+    function searchTable() {
+        const searchTerm = searchInput.value.toLowerCase();
+
+        for (let i = 0; i < tableRows.length; i++) {
+            const row = tableRows[i];
+            const rowData = row.innerText.toLowerCase();
+            if (rowData.includes(searchTerm)) {
+                row.style.display = ''; // Show the row
+            } else {
+                row.style.display = 'none'; // Hide the row
+            }
+        }
+    }
+
+    // Add event listener for input to search as the user types
+    searchInput.addEventListener('input', searchTable);
+});
 
 </script>
 

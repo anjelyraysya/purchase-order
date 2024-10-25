@@ -365,6 +365,50 @@ td .btn {
     }
 }
 
+
+
+
+
+/* General styles for the search input */
+#searchMaterial {
+    border: 2px solid #007bff; /* Initial blue border */
+    border-radius: 4px; /* Rounded corners */
+    padding: 10px 15px; /* Increased padding for better touch area */
+    font-size: 16px; /* Larger font size for readability */
+    transition: border-color 0.3s, box-shadow 0.3s, background-color 0.3s; /* Smooth transitions */
+    width: 250px; /* Set a fixed width for uniformity */
+}
+
+/* Focus effect */
+#searchMaterial:focus {
+    outline: none; /* Remove default outline */
+    border-color: #0056b3; /* Darker blue on focus */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.7); /* Light blue glow */
+    background-color: #f0f8ff; /* Light background color on focus */
+}
+
+/* Style for the label */
+label[for="searchMaterial"] {
+    color: #333; /* Darker text color for better contrast */
+    font-weight: 600; /* Bold text for visibility */
+    margin-right: 10px; /* Space between label and input */
+    font-size: 16px; /* Same font size for consistency */
+}
+
+/* Button styles */
+.btn-primary {
+    border-radius: 4px; /* Match the border radius */
+    padding: 10px 20px; /* Increase padding for better appearance */
+    font-size: 16px; /* Consistent font size */
+    transition: background-color 0.3s, transform 0.3s; /* Smooth transitions */
+}
+
+/* Button hover effect */
+.btn-primary:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: scale(1.05); /* Slightly increase size on hover */
+}
+
     </style>
 </head>
 
@@ -627,65 +671,76 @@ td .btn {
 </div>
         </aside>
         
-        <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
-            <div class="content-header">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <h1 class="m-0">Daftar Material</h1>
+       <!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">Daftar Material</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Materials</li>
+                    </ol>
+                </div>
+            </div>
+            <!-- Adding space below the breadcrumb -->
+            <div class="row mb-2">
+                <div class="col-sm-12"></div> <!-- Empty row for spacing -->
+            </div>
+            <!-- Search Box with Add Button in Same Row -->
+            <div class="row mb-2">
+                <div class="col-sm-12 d-flex justify-content-between align-items-center">
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#addMaterialModal">
+                        <i class="fas fa-plus"></i> Tambah Material
+                    </button>
+                    <div class="ml-2 d-flex align-items-center">
+                        <label for="searchMaterial" class="mr-2 mb-0">Search:</label>
+                        <input type="text" id="searchMaterial" placeholder="Search..." class="form-control" style="width: 250px; height: 38px;">
+                        <button id="searchButton" class="btn btn-info ml-2">Cari</button> <!-- Search button -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Daftar Material</h3>
                         </div>
-                        <div class="col-sm-6">
-                            <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Materials</li>
-                            </ol>
+                        <div class="card-body">
+                            <table class="table table-bordered" id="materialTable">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Nama Material</th>
+                                        <th>Unit</th>
+                                        <th>Harga</th>
+                                        <th>Brand</th>
+                                        <th>Part Number</th>
+                                        <th>Deskripsi</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Baris material akan ditambahkan di sini -->
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <!-- Main content -->
-            <section class="content">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-                        <div class="col-sm-12">
-                        <button class="btn btn-primary" data-toggle="modal" data-target="#addMaterialModal">
-                        <i class="fas fa-plus"></i> Tambah Material
-                        </button>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h3 class="card-title">Daftar Material</h3>
-                                </div>
-                                <div class="card-body">
-                                    <table class="table table-bordered" id="materialTable">
-                                        <thead>
-                                            <tr>
-                                                <th>ID</th>
-                                                <th>Nama Material</th>
-                                                <th>Unit</th>
-                                                <th>Harga</th>
-                                                <th>Brand</th>
-                                                <th>Part Number</th>
-                                                <th>Deskripsi</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <!-- Baris material akan ditambahkan di sini -->
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
         </div>
+    </section>
+</div>
+
 
         <!-- Footer -->
         <footer class="main-footer">
@@ -860,17 +915,14 @@ td .btn {
     <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/js/adminlte.min.js"></script>
 
     <script>
-     $(document).ready(function () {
-    // Data awal untuk daftar material
-    let materials = [
-        { id: 1, name: "Semen Putih", unit: "Sak", price: 50000, brand: "Semen ABC", partNumber: "CP-001", description: "Semen putih berkualitas untuk keperluan konstruksi." },
-        { id: 2, name: "Besi Beton", unit: "Kg", price: 15000, brand: "Besi XYZ", partNumber: "SP-002", description: "Besi beton yang kuat untuk struktur bangunan." },
-        { id: 3, name: "Kayu Jati", unit: "Meter Kubik", price: 200000, brand: "Kayu Jati Sejahtera", partNumber: "KY-003", description: "Kayu jati premium untuk kebutuhan furniture dan bangunan." },
-        { id: 4, name: "Papan Gypsum", unit: "Lembar", price: 75000, brand: "Gypsum Prima", partNumber: "PG-004", description: "Papan gypsum yang ideal untuk plafon dan dinding interior." },
-        { id: 5, name: "Batu Bata Merah", unit: "Biji", price: 5000, brand: "Batu Bata Sentosa", partNumber: "BB-005", description: "Batu bata merah berkualitas untuk dinding yang kokoh." }
-    ];
+  $(document).ready(function () {
+    // Load initial materials data from localStorage or initialize with an empty array
+    let materials = JSON.parse(localStorage.getItem('materials')) || [];
 
-    // Fungsi untuk merender tabel material
+    function saveMaterialsToLocalStorage() {
+        localStorage.setItem('materials', JSON.stringify(materials));
+    }
+
     function renderMaterialTable() {
         const tbody = $('#materialTable tbody');
         tbody.empty();
@@ -897,12 +949,21 @@ td .btn {
         });
     }
 
-    // Fungsi untuk menampilkan toast
     function showToast(toastId) {
         $(toastId).toast('show');
     }
 
-    // Menambahkan material baru
+    // Clear the form fields when the "Add Material" modal is shown
+    $('#addMaterialModal').on('show.bs.modal', function () {
+        $('#materialName').val('');
+        $('#materialUnit').val('');
+        $('#materialPrice').val('');
+        $('#materialBrand').val('');
+        $('#materialPartNumber').val('');
+        $('#materialDescription').val('');
+    });
+
+    // Adding a new material
     $('#saveMaterialButton').on('click', function () {
         const name = $('#materialName').val();
         const unit = $('#materialUnit').val();
@@ -913,12 +974,13 @@ td .btn {
         const id = materials.length ? materials[materials.length - 1].id + 1 : 1;
 
         materials.push({ id, name, unit, price, brand, partNumber, description });
+        saveMaterialsToLocalStorage();
         renderMaterialTable();
         $('#addMaterialModal').modal('hide');
         showToast('#materialSuccessToast');
     });
 
-    // Mengedit material
+    // Editing a material
     $(document).on('click', '.edit-material-button', function () {
         const materialId = $(this).data('id');
         const material = materials.find(m => m.id === materialId);
@@ -933,7 +995,7 @@ td .btn {
         $('#editMaterialModal').modal('show');
     });
 
-    // Mengupdate material yang diedit
+    // Updating a material
     $('#updateMaterialButton').on('click', function () {
         const materialId = $(this).data('id');
         const name = $('#editMaterialName').val();
@@ -951,34 +1013,30 @@ td .btn {
         material.partNumber = partNumber;
         material.description = description;
 
+        saveMaterialsToLocalStorage();
         renderMaterialTable();
         $('#editMaterialModal').modal('hide');
         showToast('#materialEditToast');
     });
 
-    // Menghapus material
+    // Deleting a material
     $(document).on('click', '.delete-material-button', function () {
         const materialId = $(this).data('id');
         $('#confirmDeleteMaterialButton').data('id', materialId);
         $('#confirmDeleteMaterialModal').modal('show');
     });
 
-    // Menangani konfirmasi hapus material
+    // Confirming deletion of a material
     $('#confirmDeleteMaterialButton').on('click', function () {
         const materialId = $(this).data('id');
         materials = materials.filter(m => m.id !== materialId);
+        saveMaterialsToLocalStorage();
         renderMaterialTable();
         $('#confirmDeleteMaterialModal').modal('hide');
         showToast('#materialDeleteToast');
     });
 
-    // Menangani tombol Batal
-    $('.btn-secondary').on('click', function () {
-        $('#confirmDeleteMaterialModal').modal('hide');
-        showToast('#materialCancelToast'); // Menampilkan notifikasi untuk membatalkan penghapusan
-    });
-
-    // Merender tabel material saat halaman dimuat
+    // Render material table on page load
     renderMaterialTable();
 });
 
@@ -1211,6 +1269,20 @@ style.innerHTML = `
 }
 `;
 document.head.appendChild(style);
+
+
+
+
+
+    $(document).ready(function() {
+        $('#searchMaterial').on('keyup', function() {
+            var value = $(this).val().toLowerCase(); // Get the search value and convert to lowercase
+            $('#materialTable tbody tr').filter(function() { // Filter table rows
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1); // Show/Hide rows
+            });
+        });
+    });
+
 
     </script>
 

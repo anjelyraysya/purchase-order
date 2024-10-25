@@ -681,6 +681,49 @@ td .btn {
 
 
 
+
+
+/* General styles for the search input */
+#searchProduct {
+    border: 2px solid #007bff; /* Initial blue border */
+    border-radius: 4px; /* Rounded corners */
+    padding: 10px 15px; /* Padding inside the input */
+    font-size: 16px; /* Larger font size for readability */
+    transition: border-color 0.3s, box-shadow 0.3s; /* Smooth transitions */
+    width: 250px; /* Set a fixed width for uniformity */
+    height: 38px; /* Set a fixed height */
+}
+
+/* Focus effect */
+#searchProduct:focus {
+    outline: none; /* Remove default outline */
+    border-color: #0056b3; /* Darker blue on focus */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.7); /* Light blue glow */
+    background-color: #e7f0ff; /* Light background color on focus */
+}
+
+/* Style for the label */
+label[for="searchProduct"] {
+    color: #333; /* Darker text color for better contrast */
+    font-weight: 600; /* Bold text for visibility */
+    margin-right: 10px; /* Space between label and input */
+    font-size: 16px; /* Same font size for consistency */
+}
+
+/* Button styles */
+.btn-primary {
+    border-radius: 4px; /* Match the border radius */
+    padding: 10px 20px; /* Increase padding for better appearance */
+    font-size: 16px; /* Consistent font size */
+    transition: background-color 0.3s, transform 0.3s; /* Smooth transitions */
+}
+
+/* Button hover effect */
+.btn-primary:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: scale(1.05); /* Slightly increase size on hover */
+}
+
 </style>
 
 </head>
@@ -959,59 +1002,69 @@ td .btn {
     </div>
 
     <!-- Main content -->
-<section class="content">
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-12">
-                <button class="btn btn-primary" data-toggle="modal" data-target="#addProductModal">
-                    <i class="fas fa-plus"></i> Tambah Produk
-                </button>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Daftar Produk</h3>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-12 d-flex justify-content-between align-items-center">
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#addProductModal">
+                        <i class="fas fa-plus"></i> Tambah Produk
+                    </button>
+                    <div class="ml-2 d-flex align-items-center">
+                        <label for="searchProduct" class="mr-2 mb-0">Search:</label>
+                        <input type="text" id="searchProduct" placeholder="Search..." class="form-control" style="width: 250px; height: 38px;">
+                        <button id="searchButton" class="btn btn-info ml-2">Cari</button> <!-- Search button -->
                     </div>
-                    <div class="card-body">
-                        <table class="table table-bordered">
-                            <thead>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Daftar Produk</h3>
+                        </div>
+                        <div class="card-body">
                             <table class="table table-bordered">
-                            <thead>
-                                  <tr>
-                                      <th>ID</th>
-                                      <th>Judul</th>
-                                      <th>Deskripsi</th>
-                                      <th>Kategori</th>
-                                      <th>Harga</th>
-                                      <th>Diskon (%)</th>
-                                      <th>Rating</th>
-                                      <th>Stok</th>
-                                      <th>Gambar</th> <!-- Kolom untuk gambar -->
-                                      <th>Tags</th>
-                                      <th>SKU</th>
-                                      <th>Berat</th>
-                                      <th>Lebar</th>
-                                      <th>Tinggi</th>
-                                      <th>Kedalaman</th>
-                                      <th>Informasi Garansi</th>
-                                      <th>Informasi Pengiriman</th>
-                                      <th>Status Ketersediaan</th>
-                                      <th>Kebijakan Pengembalian</th>
-                                      <th>Kuota Pesanan Minimum</th>
-                                      <th>Dibuat Pada</th>
-                                      <th>Diperbarui Pada</th>
-                                      <th>Barcode</th>
-                                      <th>Kode QR</th>
-                                      <th>Reviews</th>
-                                      <th>Aksi</th>
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Judul</th>
+                                        <th>Deskripsi</th>
+                                        <th>Kategori</th>
+                                        <th>Harga</th>
+                                        <th>Diskon (%)</th>
+                                        <th>Rating</th>
+                                        <th>Stok</th>
+                                        <th>Gambar</th> <!-- Kolom untuk gambar -->
+                                        <th>Tags</th>
+                                        <th>SKU</th>
+                                        <th>Berat</th>
+                                        <th>Lebar</th>
+                                        <th>Tinggi</th>
+                                        <th>Kedalaman</th>
+                                        <th>Informasi Garansi</th>
+                                        <th>Informasi Pengiriman</th>
+                                        <th>Status Ketersediaan</th>
+                                        <th>Kebijakan Pengembalian</th>
+                                        <th>Kuota Pesanan Minimum</th>
+                                        <th>Dibuat Pada</th>
+                                        <th>Diperbarui Pada</th>
+                                        <th>Barcode</th>
+                                        <th>Kode QR</th>
+                                        <th>Reviews</th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
-                                        <tbody id="productTableBody">
-                                        <!-- Produk akan ditampilkan di sini -->
-                                       </tbody>
-                                </table>
+                                <tbody id="productTableBody">
+                                    <!-- Produk akan ditampilkan di sini -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
 
 
 
@@ -1349,6 +1402,121 @@ $("#currentYear").text(new Date().getFullYear());
 
 
 
+
+
+
+
+
+
+
+
+// Fungsi untuk mengambil data dari form dan menambahkan produk
+document.getElementById("addProductForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Mencegah refresh halaman
+
+    // Ambil data produk dari form
+    let productTitle = document.getElementById("productTitle").value;
+    let productDescription = document.getElementById("productDescription").value;
+    let productCategory = document.getElementById("productCategory").value;
+    let productPrice = document.getElementById("productPrice").value;
+    let productDiscount = document.getElementById("productDiscount").value;
+    let productRating = document.getElementById("productRating").value;
+    let productStock = document.getElementById("productStock").value;
+    let productImage = document.getElementById("productImage").files[0]; // Ambil file gambar
+    let productTags = document.getElementById("productTags").value;
+    let productSKU = document.getElementById("productSKU").value;
+    let productWeight = document.getElementById("productWeight").value;
+    let productWidth = document.getElementById("productWidth").value;
+    let productHeight = document.getElementById("productHeight").value;
+    let productDepth = document.getElementById("productDepth").value;
+    let productWarrantyInfo = document.getElementById("productWarrantyInfo").value;
+    let productShippingInfo = document.getElementById("productShippingInfo").value;
+    let productAvailabilityStatus = document.getElementById("productAvailabilityStatus").value;
+    let productReturnPolicy = document.getElementById("productReturnPolicy").value;
+    let productMinOrderQuota = document.getElementById("productMinOrderQuota").value;
+    let productCreatedAt = document.getElementById("productCreatedAt").value;
+    let productUpdatedAt = document.getElementById("productUpdatedAt").value;
+    let productBarcode = document.getElementById("productBarcode").value;
+
+    // Ambil data review dari form
+    let reviewRating = document.getElementById("reviewRating").value;
+    let reviewComment = document.getElementById("reviewComment").value;
+    let reviewDate = document.getElementById("reviewDate").value;
+    let reviewerName = document.getElementById("reviewerName").value;
+    let reviewerEmail = document.getElementById("reviewerEmail").value;
+
+    // QR code generation dummy (Replace this with actual QR code generation if needed)
+    let productQRCode = "GeneratedQRCode";
+
+    // Tambahkan data produk ke dalam tabel
+    let productTableBody = document.getElementById("productTableBody");
+
+    // Hitung jumlah baris yang ada untuk menentukan ID otomatis
+    let productIdCounter = productTableBody.rows.length + 1; // Otomatis mengikuti jumlah baris
+
+    let newRow = productTableBody.insertRow();
+    newRow.dataset.id = productIdCounter; // Menyimpan ID di atribut data-id
+
+    newRow.innerHTML = `
+        <td>${productIdCounter}</td>
+        <td>${productTitle}</td>
+        <td>${productDescription}</td>
+        <td>${productCategory}</td>
+        <td>${productPrice}</td>
+        <td>${productDiscount}</td>
+        <td>${productRating}</td>
+        <td>${productStock}</td>
+        <td><img src="${URL.createObjectURL(productImage)}" alt="Gambar Produk" class="thumbnail" width="50"></td>
+        <td>${productTags}</td>
+        <td>${productSKU}</td>
+        <td>${productWeight}</td>
+        <td>${productWidth}</td>
+        <td>${productHeight}</td>
+        <td>${productDepth}</td>
+        <td>${productWarrantyInfo}</td>
+        <td>${productShippingInfo}</td>
+        <td>${productAvailabilityStatus}</td>
+        <td>${productReturnPolicy}</td>
+        <td>${productMinOrderQuota}</td>
+        <td>${productCreatedAt}</td>
+        <td>${productUpdatedAt}</td>
+        <td>${productBarcode}</td>
+        <td><img src="${URL.createObjectURL(productImage)}" alt="QR Code" class="qr-code" width="50"></td>
+        <td>
+            <strong>Review:</strong>
+            <p>Rating: ${reviewRating}</p>
+            <p>Komentar: ${reviewComment}</p>
+            <p>Tanggal: ${reviewDate}</p>
+            <p>Nama: ${reviewerName}</p>
+            <p>Email: ${reviewerEmail}</p>
+        </td>
+        <td>
+            <button class="btn btn-warning btn-sm edit-product" data-id="${productIdCounter}">
+                <i class="fas fa-edit"></i> Edit
+            </button>
+            <button class="btn btn-danger btn-sm delete-product" data-id="${productIdCounter}">
+                <i class="fas fa-trash-alt"></i> Hapus
+            </button>
+        </td>
+    `;
+
+    // Notifikasi produk berhasil ditambahkan
+    Swal.fire({
+        icon: 'success',
+        title: 'Berhasil!',
+        text: 'Produk berhasil ditambahkan!',
+        showConfirmButton: false,
+        timer: 1500
+    });
+
+    // Reset form
+    document.getElementById("addProductForm").reset();
+    $('#addProductModal').modal('hide');
+});
+
+
+
+
 // Fungsi untuk mengedit produk
 async function editProduct(productId) {
     const row = $(`tr[data-id="${productId}"]`);
@@ -1609,109 +1777,7 @@ $(document).on('click', '.delete-product', function() {
 
 
 
-// Fungsi untuk mengambil data dari form dan menambahkan produk
-document.getElementById("addProductForm").addEventListener("submit", function(event) {
-    event.preventDefault(); // Mencegah refresh halaman
 
-    // Ambil data produk dari form
-    let productTitle = document.getElementById("productTitle").value;
-    let productDescription = document.getElementById("productDescription").value;
-    let productCategory = document.getElementById("productCategory").value;
-    let productPrice = document.getElementById("productPrice").value;
-    let productDiscount = document.getElementById("productDiscount").value;
-    let productRating = document.getElementById("productRating").value;
-    let productStock = document.getElementById("productStock").value;
-    let productImage = document.getElementById("productImage").files[0]; // Ambil file gambar
-    let productTags = document.getElementById("productTags").value;
-    let productSKU = document.getElementById("productSKU").value;
-    let productWeight = document.getElementById("productWeight").value;
-    let productWidth = document.getElementById("productWidth").value;
-    let productHeight = document.getElementById("productHeight").value;
-    let productDepth = document.getElementById("productDepth").value;
-    let productWarrantyInfo = document.getElementById("productWarrantyInfo").value;
-    let productShippingInfo = document.getElementById("productShippingInfo").value;
-    let productAvailabilityStatus = document.getElementById("productAvailabilityStatus").value;
-    let productReturnPolicy = document.getElementById("productReturnPolicy").value;
-    let productMinOrderQuota = document.getElementById("productMinOrderQuota").value;
-    let productCreatedAt = document.getElementById("productCreatedAt").value;
-    let productUpdatedAt = document.getElementById("productUpdatedAt").value;
-    let productBarcode = document.getElementById("productBarcode").value;
-
-    // Ambil data review dari form
-    let reviewRating = document.getElementById("reviewRating").value;
-    let reviewComment = document.getElementById("reviewComment").value;
-    let reviewDate = document.getElementById("reviewDate").value;
-    let reviewerName = document.getElementById("reviewerName").value;
-    let reviewerEmail = document.getElementById("reviewerEmail").value;
-
-    // QR code generation dummy (Replace this with actual QR code generation if needed)
-    let productQRCode = "GeneratedQRCode";
-
-    // Tambahkan data produk ke dalam tabel
-    let productTableBody = document.getElementById("productTableBody");
-
-    // Hitung jumlah baris yang ada untuk menentukan ID otomatis
-    let productIdCounter = productTableBody.rows.length + 1; // Otomatis mengikuti jumlah baris
-
-    let newRow = productTableBody.insertRow();
-    newRow.dataset.id = productIdCounter; // Menyimpan ID di atribut data-id
-
-    newRow.innerHTML = `
-        <td>${productIdCounter}</td>
-        <td>${productTitle}</td>
-        <td>${productDescription}</td>
-        <td>${productCategory}</td>
-        <td>${productPrice}</td>
-        <td>${productDiscount}</td>
-        <td>${productRating}</td>
-        <td>${productStock}</td>
-        <td><img src="${URL.createObjectURL(productImage)}" alt="Gambar Produk" class="thumbnail" width="50"></td>
-        <td>${productTags}</td>
-        <td>${productSKU}</td>
-        <td>${productWeight}</td>
-        <td>${productWidth}</td>
-        <td>${productHeight}</td>
-        <td>${productDepth}</td>
-        <td>${productWarrantyInfo}</td>
-        <td>${productShippingInfo}</td>
-        <td>${productAvailabilityStatus}</td>
-        <td>${productReturnPolicy}</td>
-        <td>${productMinOrderQuota}</td>
-        <td>${productCreatedAt}</td>
-        <td>${productUpdatedAt}</td>
-        <td>${productBarcode}</td>
-        <td><img src="${URL.createObjectURL(productImage)}" alt="QR Code" class="qr-code" width="50"></td>
-        <td>
-            <strong>Review:</strong>
-            <p>Rating: ${reviewRating}</p>
-            <p>Komentar: ${reviewComment}</p>
-            <p>Tanggal: ${reviewDate}</p>
-            <p>Nama: ${reviewerName}</p>
-            <p>Email: ${reviewerEmail}</p>
-        </td>
-        <td>
-            <button class="btn btn-warning btn-sm edit-product" data-id="${productIdCounter}">
-                <i class="fas fa-edit"></i> Edit
-            </button>
-            <button class="btn btn-danger btn-sm delete-product" data-id="${productIdCounter}">
-                <i class="fas fa-trash-alt"></i> Hapus
-            </button>
-        </td>
-    `;
-
-    // Notifikasi produk berhasil ditambahkan
-    Swal.fire({
-        icon: 'success',
-        title: 'Berhasil!',
-        text: 'Produk berhasil ditambahkan!',
-        showConfirmButton: false,
-        timer: 1500
-    });
-
-    // Reset form
-    document.getElementById("addProductForm").reset();
-    $('#addProductModal').modal('hide');
-});
 
 
 
@@ -2000,6 +2066,36 @@ document.head.appendChild(style);
 
 
 
+document.addEventListener("DOMContentLoaded", function () {
+        const searchInput = document.getElementById('searchProduct');
+        const productTableBody = document.getElementById('productTableBody');
+
+        // Function to filter products
+        searchInput.addEventListener('keyup', function () {
+            const searchTerm = searchInput.value.toLowerCase(); // Get the input value
+            const rows = productTableBody.getElementsByTagName('tr'); // Get all table rows
+
+            // Loop through all rows and hide those that don't match the search term
+            for (let i = 0; i < rows.length; i++) {
+                const cells = rows[i].getElementsByTagName('td');
+                let matchFound = false;
+
+                // Check each cell in the row
+                for (let j = 0; j < cells.length; j++) {
+                    if (cells[j]) {
+                        const cellValue = cells[j].textContent || cells[j].innerText;
+                        if (cellValue.toLowerCase().includes(searchTerm)) {
+                            matchFound = true; // If match is found, set flag
+                            break; // No need to check further cells
+                        }
+                    }
+                }
+
+                // Show or hide the row based on matchFound
+                rows[i].style.display = matchFound ? "" : "none";
+            }
+        });
+    });
 </script>
 
 
